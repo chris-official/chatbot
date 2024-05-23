@@ -22,6 +22,8 @@ class OpenWeatherMapAPIWrapper:
 
     def get_location(self, city_name: str, country: str = None, state: str = None) -> dict:
         location = city_name
+        if state and (country == "US"):
+            location += f",{state}"
         if country:
             location += f",{country}"
         if state:
