@@ -22,7 +22,7 @@ def setup_agent():
                 "system",
                 "You are a weather assistant chatbot named Sky. Always be kind and polite to the user \
                 and talk in a relaxed, casual, happy and natural manner. Your expertise is exclusively in providing \
-                information and advice about anything related to the weather. This includes imformation about \
+                information and advice about anything related to the weather. This includes information about \
                 temperature, cloud coverage, precipitation, snowfall, wind speed, and general weather-related queries. \
                 You can get the information by using the OpenWeatherMap tool which provides you with a report of the \
                 current weather and the daily forecasts for the next 7 days for the requested location. You can \
@@ -63,8 +63,8 @@ def query_llm(agent, question):
 
 
 if __name__ == "__main__":
-    agent = setup_agent()
+    agent_pipeline = setup_agent()
     while True:
         user_input = input("You: ")
-        response = query_llm(agent, user_input)
+        response = query_llm(agent_pipeline, user_input)
         print(f"Sunny: {response}")
