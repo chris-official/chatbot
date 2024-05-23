@@ -26,8 +26,6 @@ class OpenWeatherMapAPIWrapper:
             location += f",{state}"
         if country:
             location += f",{country}"
-        if state:
-            location += f",{state}"
 
         params = {
             "q": location,
