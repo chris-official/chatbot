@@ -33,7 +33,7 @@ class OpenWeatherMapAPIWrapper:
             "appid": self.key
         }
 
-        response = requests.get("http://api.openweathermap.org/geo/1.0/direct", params=params)
+        response = requests.get("https://api.openweathermap.org/geo/1.0/direct", params=params)
         response = self.handle_response(response)
         if isinstance(response, str):
             return f"Could not get location because of following error: {response}"
