@@ -13,7 +13,7 @@ def setup_agent():
     llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7)
 
     # Load the tools
-    tools = load_tools(["openweathermap-api"], llm)
+    tools = [OpenWeatherMapQuery()]
 
     # Create a prompt template for the chatbot
     prompt = ChatPromptTemplate.from_messages(
