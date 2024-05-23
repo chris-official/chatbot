@@ -19,6 +19,8 @@ class OpenWeatherMapAPIWrapper:
         the evening, and {temp_night}°C at night. Humidity is {humidity}%, UV index is {uvi}, cloud 
         coverage is {clouds}%, wind speed is {wind_speed} m/s. The Probability of precipitation is {pop:.0%}. 
         There is total volume of {rain}mm of rain and {snow}mm of snow."""
+        self.location = None
+        self.weather = None
 
     def get_location(self, city_name: str, country: str = None, state: str = None) -> dict:
         location = city_name
@@ -42,31 +44,34 @@ class OpenWeatherMapAPIWrapper:
         return loc
 
     def get_weather(self, city_name: str, country: str = None, state: str = None) -> str:
-        location = self.get_location(city_name, country, state)
+        self.location = self.get_location(city_name, country, state)
+        if isinstance(self.location, str):
+            return f"Could not get location because of following error: {self.location}"
+
         params = {
-            "lat": location["lat"],
-            "lon": location["lon"],
+            "lat": self.location["lat"],
+            "lon": self.location["lon"],
             "exclude": "minutely,hourly,alerts",
             "units": "metric",
             "appid": self.key
         }
 
-        response = requests.get("https://api.openweathermap.org/data/3.0/onecall", params=params)
-        response = self.handle_response(response)
-        if isinstance(response, str):
-            return f"Could not get weather because of following error: {response}"
+        self.weather = requests.get("https://api.openweathermap.org/data/3.0/onecall", params=params)
+        self.weather = self.handle_response(self.weather)
+        if isinstance(self.weather, str):
+            return f"Could not get weather because of following error: {self.weather}"
 
-        return self.format_output(location, response)
+        return self.get_output()
 
-    def format_output(self, location: dict, response: dict) -> str:
+    def get_output(self) -> str:
 
-        loc = location["name"]
-        if location["country"] == "US":
-            loc += f", {location['state']}"
-        loc += f", {location['country']}"
+        loc = self.location["name"]
+        if self.location["country"] == "US":
+            loc += f", {self.location['state']}"
+        loc += f", {self.location['country']}"
 
-        current = response["current"]
-        forecast = response["daily"]
+        current = self.weather["current"]
+        forecast = self.weather["daily"]
 
         rain = current.get("rain", 0)
         rain = rain if isinstance(rain, int) else rain.get("1h", 0)
