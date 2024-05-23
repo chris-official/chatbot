@@ -1,9 +1,6 @@
 import os
-from dotenv import load_dotenv
-from datetime import datetime, timezone
 import requests
-
-load_dotenv()
+from datetime import datetime, timezone
 
 
 class OpenWeatherMapAPIWrapper:
