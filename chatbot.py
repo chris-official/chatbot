@@ -1,9 +1,9 @@
 from langchain_openai import ChatOpenAI
 from langchain.agents import AgentExecutor, create_tool_calling_agent
-from langchain.agents import load_tools
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.memory import ConversationBufferMemory
 from dotenv import load_dotenv
+from tools import OpenWeatherMapQuery
 
 load_dotenv()
 
