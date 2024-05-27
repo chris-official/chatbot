@@ -54,12 +54,8 @@ Philippe is the principal architect at a condo-development firm in Paris. He liv
 """
 
 # Define app
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.FONT_AWESOME])
-server = app.server
-
-
-# Load images
-IMAGES = {"Philippe": app.get_asset_url("Philippe.jpg")}
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LITERA, dbc.icons.FONT_AWESOME])
+# server = app.server
 
 
 # Define Layout
