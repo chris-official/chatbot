@@ -90,6 +90,11 @@ app.layout = dbc.Container(
         html.Hr(),
         dcc.Store(id="store-conversation", data=""),
         conversation,
+        dbc.Spinner(
+            dcc.Store(id="store-answers", data=[], storage_type="memory"),
+            color="primary",
+            spinner_style={"position": "absolute", "bottom": "25px"},
+        ),
         controls,
         dbc.Spinner(html.Div(id="loading-component")),
     ],
