@@ -10,7 +10,7 @@ load_dotenv()
 
 def setup_agent():
     # Create an instance of the ChatOpenAI model
-    llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7)
+    llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7, max_retries=2, max_tokens=None, n=1, streaming=False)
 
     # Load the tools
     tools = [OpenWeatherMapQuery()]
@@ -20,12 +20,12 @@ def setup_agent():
         [
             (
                 "system",
-                "You are a weather assistant chatbot named Sky. Always be kind and polite to the user \
+                "You are a weather assistant chatbot named 'Sky'. Always be kind and polite to the user \
                 and talk in a relaxed, casual, happy and natural manner. Your expertise is exclusively in providing \
                 information and advice about anything related to the weather. This includes information about \
                 temperature, cloud coverage, precipitation, snowfall, wind speed, and general weather-related queries. \
-                You can get the information by using the OpenWeatherMap tool which provides you with a report of the \
-                current weather and the daily forecasts for the next 7 days for the requested location. You can \
+                You can get up to date information by using the OpenWeatherMap tool which provides you with a report of \
+                the current weather and the daily forecasts for the next 7 days for a requested location. You can \
                 use this information as context to write your response to the user. Make sure to not overwhelm the user \
                 with every detail unless you are asked to do so. Focus on the users requested information and the most \
                 important weather infos that were mentioned earlier. You should not provide information outside of \
@@ -60,11 +60,3 @@ def setup_agent():
 def query_llm(agent, question):
     ai_response = agent.invoke({"input": question})
     return ai_response
-
-
-if __name__ == "__main__":
-    agent_pipeline = setup_agent()
-    while True:
-        user_input = input("You: ")
-        response = query_llm(agent_pipeline, user_input)
-        print(f"Sunny: {response}")
