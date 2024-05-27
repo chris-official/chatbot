@@ -49,9 +49,16 @@ def textbox(text, box="AI"):
         raise ValueError("Incorrect option for `box`.")
 
 
-description = """
-Philippe is the principal architect at a condo-development firm in Paris. He lives with his girlfriend of five years in a 2-bedroom condo, with a small dog named Coco. Since the pandemic, his firm has seen a  significant drop in condo requests. As such, he’s been spending less time designing and more time on cooking,  his favorite hobby. He loves to cook international foods, venturing beyond French cuisine. But, he is eager  to get back to architecture and combine his hobby with his occupation. That’s why he’s looking to create a  new design for the kitchens in the company’s current inventory. Can you give him advice on how to do that?
-"""
+def _update_display(questions, answers):
+    history = [x for x in chain(*zip_longest(questions, answers)) if x is not None]
+    out = [textbox("Hi, my name is Sky! How can I help you?", box="AI")]
+    messages = [
+        textbox(x, box="user") if i % 2 == 0 else textbox(x, box="AI")
+        for i, x in enumerate(history)
+    ]
+    out.extend(messages)
+    return out
+
 
 # Define app
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LITERA, dbc.icons.FONT_AWESOME])
@@ -90,13 +97,24 @@ app.layout = dbc.Container(
 
 
 @callback(
-    Output("display-conversation", "children"), [Input("store-conversation", "data")]
+    Output("display-conversation", "children"),
+    [Input("store-questions", "data")],
+    [State("store-answers", "data")],
 )
-def update_display(chat_history):
-    return [
-        textbox(x, box="user") if i % 2 == 0 else textbox(x, box="AI")
-        for i, x in enumerate(chat_history.split("<split>")[:-1])
-    ]
+def update_display_questions(questions, answers):
+    print("Updating display questions")
+    return _update_display(questions, answers)
+
+
+@callback(
+    Output("display-conversation", "children", allow_duplicate=True),
+    [Input("store-answers", "data")],
+    [State("store-questions", "data")],
+    prevent_initial_call=True
+)
+def update_display_answers(answers, questions):
+    print("Updating display answers")
+    return _update_display(questions, answers)
 
 
 @callback(
