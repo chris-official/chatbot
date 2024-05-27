@@ -73,6 +73,7 @@ conversation = html.Div(
         "display": "flex",
         "height": "calc(90vh - 132px)",
         "flex-direction": "column-reverse",
+        "padding-top": "5px",
     },
 )
 
@@ -86,9 +87,9 @@ controls = dbc.InputGroup(
 app.layout = dbc.Container(
     fluid=False,
     children=[
-        header("Dash GPT-3 Chatbot", app),
+        header("Weather Chatbot", app),
         html.Hr(),
-        dcc.Store(id="store-conversation", data=""),
+        dcc.Store(id="store-questions", data=[], storage_type="memory"),
         conversation,
         dbc.Spinner(
             dcc.Store(id="store-answers", data=[], storage_type="memory"),
