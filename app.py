@@ -131,43 +131,22 @@ def clear_input(n_clicks, n_submit):
 
 
 @callback(
-    [Output("store-conversation", "data"), Output("loading-component", "children")],
+    Output("store-answers", "data"),
     [Input("submit", "n_clicks"), Input("user-input", "n_submit")],
-    [State("user-input", "value"), State("store-conversation", "data")],
+    [State("user-input", "value"), State("store-answers", "data")],
 )
-def run_chatbot(n_clicks, n_submit, user_input, chat_history):
-    if n_clicks == 0 and n_submit is None:
-        return "", None
+def run_chatbot(n_clicks, n_submit, user_input, answer_history):
+    print("Running chatbot")
+    if n_clicks == 0:
+        return []
 
     if user_input is None or user_input == "":
-        return chat_history, None
+        return answer_history
 
-    prompt = dedent(
-        f"""
-    {description}
-
-    You: Hello!
-    """
-    )
-
-    # First add the user input to the chat history
-    chat_history += f"You: {user_input}:"
-
-    model_input = prompt + chat_history.replace("<split>", "\n")
-
-    response = openai.Completion.create(
-        engine="davinci",
-        prompt=model_input,
-        max_tokens=250,
-        stop=["You:"],
-        temperature=0.9,
-    )
-    model_output = response.choices[0].text.strip()
-
-    chat_history += f"{model_output}<split>"
-
-    return chat_history, None
+    sleep(3)
+    answer_history.append("Here will be the AI response.")
+    return answer_history
 
 
 if __name__ == "__main__":
-    app.run_server(debug=False)
+    app.run_server(debug=True)
