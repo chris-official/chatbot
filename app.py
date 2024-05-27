@@ -1,8 +1,8 @@
-from textwrap import dedent
 import dash
 from dash import html, dcc, callback, Output, Input, State
 import dash_bootstrap_components as dbc
-import openai
+from time import sleep
+from itertools import chain, zip_longest
 
 
 def header(name, app):
