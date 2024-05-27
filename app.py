@@ -79,7 +79,7 @@ conversation = html.Div(
 controls = dbc.InputGroup(
     children=[
         dbc.Input(id="user-input", placeholder="Write to the chatbot...", type="text"),
-        dbc.InputGroupAddon(dbc.Button("Submit", id="submit"), addon_type="append"),
+        dbc.Button("Submit", id="submit"),
     ]
 )
 
