@@ -6,12 +6,14 @@ from typing import Optional, Type
 
 
 class OpenWeatherMapInput(BaseModel):
-    city: str = Field(description="The city for which to fetch weather information as string e.g. 'London'.")
+    city: str = Field(
+        description="The city for which to fetch weather information as string e.g. 'London' or 'Berlin'."
+    )
     country: Optional[str] = Field(
         default=None,
         min_length=2,
         max_length=2,
-        description="The two letter country code for the city if applicable as string e.g. 'GB'."
+        description="The two letter country code for the city if applicable as string e.g. 'GB' or 'DE'."
     )
     state: Optional[str] = Field(
         default=None,
