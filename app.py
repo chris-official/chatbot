@@ -124,11 +124,20 @@ def update_display_answers(answers, questions):
 
 
 @callback(
-    Output("user-input", "value"),
+    [Output("store-questions", "data"), Output("user-input", "value")],
     [Input("submit", "n_clicks"), Input("user-input", "n_submit")],
+    [State("user-input", "value"), State("store-questions", "data")],
 )
-def clear_input(n_clicks, n_submit):
-    return ""
+def update_conversation(n_clicks, n_submit, user_input, question_history):
+    print("Updating conversation")
+    if n_clicks == 0:
+        return [], ""
+
+    if user_input is None or user_input == "":
+        return question_history, ""
+
+    question_history.append(user_input)
+    return question_history, ""
 
 
 @callback(
