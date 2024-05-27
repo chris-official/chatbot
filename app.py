@@ -8,13 +8,12 @@ import openai
 def header(name, app):
     title = html.H1(name, style={"margin-top": 5})
     logo = html.Img(
-        src=app.get_asset_url("dash-logo.png"), style={"float": "right", "height": 60}
+        src=app.get_asset_url("weather-icon.png"), style={"float": "right", "height": 60, "margin-top": 5}
     )
     return dbc.Row([dbc.Col(title, md=8), dbc.Col(logo, md=4)])
 
 
-def textbox(text, box="AI", name="Philippe"):
-    text = text.replace(f"{name}:", "").replace("You:", "")
+def textbox(text, box="AI"):
     style = {
         "max-width": "60%",
         "width": "max-content",
@@ -34,7 +33,7 @@ def textbox(text, box="AI", name="Philippe"):
         style["margin-right"] = "auto"
 
         thumbnail = html.Img(
-            src=app.get_asset_url("Philippe.jpg"),
+            src=app.get_asset_url("bot.png"),
             style={
                 "border-radius": 50,
                 "height": 36,
@@ -42,9 +41,9 @@ def textbox(text, box="AI", name="Philippe"):
                 "float": "left",
             },
         )
-        textbox = dbc.Card(text, style=style, body=True, color="light", inverse=False)
+        box = dbc.Card(text, style=style, body=True, color="light", inverse=False)
 
-        return html.Div([thumbnail, textbox])
+        return html.Div([thumbnail, box])
 
     else:
         raise ValueError("Incorrect option for `box`.")
