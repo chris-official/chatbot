@@ -14,37 +14,12 @@ def header(name, app):
 
 
 def textbox(text, box="AI"):
-    style = {
-        "max-width": "60%",
-        "width": "max-content",
-        "padding": "5px 10px",
-        "border-radius": 25,
-        "margin-bottom": 20,
-    }
-
     if box == "user":
-        style["margin-left"] = "auto"
-        style["margin-right"] = 0
-
-        return dbc.Card(text, style=style, body=True, color="primary", inverse=True)
-
+        return dbc.Card(text, body=True, color="primary", inverse=True, className="user-message message-box")
     elif box == "AI":
-        style["margin-left"] = 0
-        style["margin-right"] = "auto"
-
-        thumbnail = html.Img(
-            src=app.get_asset_url("bot.png"),
-            style={
-                "border-radius": 50,
-                "height": 36,
-                "margin-right": 5,
-                "float": "left",
-            },
-        )
-        box = dbc.Card(text, style=style, body=True, color="light", inverse=False)
-
+        thumbnail = html.Img(src=app.get_asset_url("bot.png"), className="thumbnail")
+        box = dbc.Card(text, body=True, color="light", inverse=False, className="ai-message message-box")
         return html.Div([thumbnail, box])
-
     else:
         raise ValueError("Incorrect option for box.")
 
