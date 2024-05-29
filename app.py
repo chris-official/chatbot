@@ -87,7 +87,7 @@ conversation = html.Div(
     style={
         "overflow-y": "auto",
         "display": "flex",
-        "height": "calc(90vh - 132px)",
+        "height": "calc(90vh - 120px)",
         "flex-direction": "column-reverse",
         "padding-top": "5px",
     },
@@ -95,8 +95,8 @@ conversation = html.Div(
 
 controls = dbc.InputGroup(
     children=[
-        dbc.Input(id="user-input", placeholder="Write to the chatbot...", type="text"),
-        dbc.Button("Submit", id="submit"),
+        dbc.Textarea(id="user-input", placeholder="Write to the chatbot...", autofocus=True),
+        dbc.Button(html.I(className="fas fa-paper-plane fa-lg", style={"margin-right": "5px"}), id="submit"),
     ]
 )
 
