@@ -46,7 +46,48 @@ def textbox(text, box="AI"):
         return html.Div([thumbnail, box])
 
     else:
-        raise ValueError("Incorrect option for `box`.")
+        raise ValueError("Incorrect option for box.")
+
+
+def weather_card(title, temp, cloud, wind, rain):
+    icon = html.Img(src=app.get_asset_url("weather-icon.png"), className="icons")
+    return dbc.Card(
+        [
+            dbc.CardBody(
+                [
+                    dbc.Row(
+                        [
+                            dbc.Col(icon, width=3, xxl=2, className="icon-col"),
+                            dbc.Col(
+                                [
+                                    html.H5(title, className="card-title"),
+                                    dbc.Row(
+                                        [
+                                            dbc.Col(html.I(className="fas fa-temperature-half mar"), width=1),
+                                            dbc.Col(f"{temp}°C", width=5),
+                                            dbc.Col(html.I(className="fas fa-cloud mar"), width=1),
+                                            dbc.Col(f"{cloud}%", width=5),
+                                        ]
+                                    ),
+                                    dbc.Row(
+                                        [
+                                            dbc.Col(html.I(className="fas fa-wind mar"), width=1),
+                                            dbc.Col(f"{wind} m/s", width=5),
+                                            dbc.Col(html.I(className="fas fa-droplet mar"), width=1),
+                                            dbc.Col(f"{rain} mm/h", width=5),
+                                        ]
+                                    )
+                                ],
+                                width=9,
+                                xxl=10,
+                            )
+                        ]
+                    )
+                ]
+            ),
+        ],
+        className="weather-card",
+    )
 
 
 def _update_display(questions, answers):
