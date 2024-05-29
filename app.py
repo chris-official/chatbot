@@ -1,15 +1,17 @@
 import dash
-from dash import html, dcc, callback, Output, Input, State
+from dash import html, dcc, callback, Output, Input, State, ctx
 import dash_bootstrap_components as dbc
 from time import sleep
 from itertools import chain, zip_longest
+from examples import PROMPT_EXAMPLES
+
+# weather: https://www.freeiconspng.com/thumbs/weather-icon-png/weather-icon-png-2.png
+# robot: https://cdn-icons-png.flaticon.com/512/3398/3398643.png
 
 
 def header(name, app):
     title = html.H1(name, style={"margin-top": 5})
-    logo = html.Img(
-        src=app.get_asset_url("weather-icon.png"), style={"float": "right", "height": 60, "margin-top": 5}
-    )
+    logo = html.Img(src=app.get_asset_url("weather-icon.png"), id="logo")
     return dbc.Row([dbc.Col(title, md=8), dbc.Col(logo, md=4)])
 
 
