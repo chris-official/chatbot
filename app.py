@@ -108,20 +108,58 @@ buttons = html.Div(
 )
 
 app.layout = dbc.Container(
-    fluid=False,
+    fluid=True,
     children=[
         header("Weather Chatbot", app),
         html.Hr(),
-        dcc.Store(id="store-questions", data=[], storage_type="memory"),
-        conversation,
-        dbc.Spinner(
-            dcc.Store(id="store-answers", data=[], storage_type="memory"),
-            color="primary",
-            spinner_style={"position": "absolute", "bottom": "25px"},
-        ),
-        controls,
-        dbc.Spinner(html.Div(id="loading-component")),
-    ],
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        html.H2("Examples"),
+                        html.Hr(),
+                        html.P("Click on an example to prefill the chatbox. Next, you can edit your prompt or submit the question directly."),
+                        html.Hr(),
+                        buttons,
+                        html.Div(id="example-output"),
+                    ],
+                    width=3
+                ),
+                dbc.Col(
+                    [
+                        dcc.Store(id="store-questions", data=[], storage_type="memory"),
+                        conversation,
+                        dbc.Spinner(
+                            dcc.Store(id="store-answers", data=[], storage_type="memory"),
+                            color="secondary",
+                            spinner_style={"position": "absolute", "bottom": "10px", "left": "5px"},
+                        ),
+                        controls,
+                        dbc.Spinner(html.Div(id="loading-component"))
+                    ]
+                ),
+                dbc.Col(
+                    [
+                        html.H2("7-Day Forecast"),
+                        html.Hr(),
+                        html.Div(
+                            [
+                                weather_card("Today", 20, 30, 5, 0.5),
+                                weather_card("Tuesday", 22, 40, 6, 0.7),
+                                weather_card("Wednesday", 18, 20, 4, 0.3),
+                                weather_card("Thursday", 19, 25, 5, 0.4),
+                                weather_card("Friday", 21, 35, 6, 0.6),
+                                weather_card("Saturday", 23, 45, 7, 0.8),
+                                weather_card("Sunday", 24, 50, 8, 1.0),
+                            ],
+                            className="weather-cards-wrapper"
+                        )
+                    ],
+                    width=3
+                ),
+            ]
+        )
+    ]
 )
 
 
