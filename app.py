@@ -144,6 +144,20 @@ app.layout = dbc.Container(
 
 
 @callback(
+    Output("user-input", "value", allow_duplicate=True),
+    [Input(f"example-button_{i}", "n_clicks") for i in range(len(PROMPT_EXAMPLES))],
+    [State(f"example-button_{i}", "children") for i in range(len(PROMPT_EXAMPLES))],
+    prevent_initial_call=True
+)
+def on_button_click(*inputs):
+    triggered_id = ctx.triggered_id
+    n = int(triggered_id.split("_")[-1])
+    length = len(inputs) // 2
+    idx = length + n
+    return inputs[idx]
+
+
+@callback(
     Output("display-conversation", "children"),
     [Input("store-questions", "data")],
     [State("store-answers", "data")],
