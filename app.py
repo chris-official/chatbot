@@ -100,6 +100,13 @@ controls = dbc.InputGroup(
     ]
 )
 
+buttons = html.Div(
+    [
+        dbc.Button(text, color="primary", id=f"example-button_{i}", className="example-buttons") for i, text in enumerate(PROMPT_EXAMPLES)
+    ],
+    className="d-grid gap-2 button-wrapper",
+)
+
 app.layout = dbc.Container(
     fluid=False,
     children=[
