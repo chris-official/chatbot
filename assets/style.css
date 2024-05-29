@@ -1,0 +1,72 @@
+p {
+    font-family: inherit;
+}
+
+.example-buttons {
+    text-align: left;
+    font-size: medium;
+    border-radius: 10px;
+}
+
+#user-input {
+    height: 3rem;
+    resize: none;
+}
+
+#logo {
+    float: right;
+    height: 60px;
+    margin-top: 5px;
+}
+
+.message-box {
+    max-width: 33vw;
+    width: max-content;
+    padding: 5px 10px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+.user-message {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.ai-message {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.thumbnail {
+    border-radius: 50%;
+    height: 36px;
+    margin-right: 5px;
+    float: left;
+}
+
+.icons {
+    width: 100%;
+}
+
+.weather-card {
+    margin-bottom: 1rem;
+}
+
+.weather-cards-wrapper {
+    max-height: 73vh;
+    overflow-y: auto;
+}
+
+.button-wrapper {
+    max-height: 62vh;
+    overflow-y: auto;
+}
+
+.mar {
+    margin-right: 5px;
+}
+
+.icon-col {
+    display: flex;
+    align-items: center;
+}
