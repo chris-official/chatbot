@@ -163,7 +163,6 @@ def on_button_click(*inputs):
     [State("store-answers", "data")],
 )
 def update_display_questions(questions, answers):
-    print("Updating display questions")
     return _update_display(questions, answers)
 
 
@@ -174,7 +173,6 @@ def update_display_questions(questions, answers):
     prevent_initial_call=True
 )
 def update_display_answers(answers, questions):
-    print("Updating display answers")
     return _update_display(questions, answers)
 
 
@@ -184,7 +182,6 @@ def update_display_answers(answers, questions):
     [State("user-input", "value"), State("store-questions", "data")],
 )
 def update_conversation(n_clicks, n_submit, user_input, question_history):
-    print("Updating conversation")
     if n_clicks == 0:
         return [], ""
 
@@ -201,14 +198,13 @@ def update_conversation(n_clicks, n_submit, user_input, question_history):
     [State("user-input", "value"), State("store-answers", "data")],
 )
 def run_chatbot(n_clicks, n_submit, user_input, answer_history):
-    print("Running chatbot")
     if n_clicks == 0:
         return []
 
     if user_input is None or user_input == "":
         return answer_history
 
-    sleep(3)
+    sleep(1)
     answer_history.append("Here will be the AI response.")
     return answer_history
 
