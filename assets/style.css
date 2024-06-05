@@ -1,11 +1,24 @@
+body {
+    font-family: "Poppins", sans-serif;
+}
+
 p {
     font-family: inherit;
+}
+
+.container-fluid {
+    padding: 1rem 2rem 0 2rem;
 }
 
 .example-buttons {
     text-align: left;
     font-size: medium;
     border-radius: 10px;
+    font-family: inherit;
+}
+
+.button-hint {
+    max-width: 30rem;
 }
 
 #user-input {
@@ -46,6 +59,7 @@ p {
 
 .icons {
     width: 100%;
+    max-width: 6rem;
 }
 
 .weather-card {
@@ -59,14 +73,28 @@ p {
 
 .button-wrapper {
     max-height: 62vh;
+    max-width: max-content;
     overflow-y: auto;
 }
 
 .mar {
-    margin-right: 5px;
+    width: 2rem;
 }
 
 .icon-col {
     display: flex;
     align-items: center;
+}
+
+.button-column {
+    min-width: min-content;
+}
+
+@media (max-width: 1550px) {
+  .forecast-column {
+      width: 50vw;
+      margin: auto;
+      padding-top: 5rem;
+      min-width: 26rem;
+  }
 }
