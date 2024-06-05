@@ -40,18 +40,38 @@ def weather_card(title, temp, cloud, wind, rain):
                                     html.H5(title, className="card-title"),
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.I(className="fas fa-temperature-half mar"), width=1),
-                                            dbc.Col(f"{temp}°C", width=5),
-                                            dbc.Col(html.I(className="fas fa-cloud mar"), width=1),
-                                            dbc.Col(f"{cloud}%", width=5),
+                                            dbc.Col(
+                                                [
+                                                    html.I(className="fas fa-temperature-half mar"),
+                                                    f"{temp}°C"
+                                                ],
+                                                width=6
+                                            ),
+                                            dbc.Col(
+                                                [
+                                                    html.I(className="fas fa-cloud mar"),
+                                                    f"{cloud}%"
+                                                ],
+                                                width=6
+                                            ),
                                         ]
                                     ),
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.I(className="fas fa-wind mar"), width=1),
-                                            dbc.Col(f"{wind} m/s", width=5),
-                                            dbc.Col(html.I(className="fas fa-droplet mar"), width=1),
-                                            dbc.Col(f"{rain} mm/h", width=5),
+                                            dbc.Col(
+                                                [
+                                                    html.I(className="fas fa-wind mar"),
+                                                    f"{wind} m/s"
+                                                ],
+                                                width=6
+                                            ),
+                                            dbc.Col(
+                                                [
+                                                    html.I(className="fas fa-droplet mar"),
+                                                    f"{rain} mm/h"
+                                                ],
+                                                width=6
+                                            ),
                                         ]
                                     )
                                 ],
@@ -121,13 +141,18 @@ app.layout = dbc.Container(
                 dbc.Col(
                     [
                         html.H2("Examples"),
-                        html.Hr(),
-                        html.P("Click on an example to prefill the chatbox. Next, you can edit your prompt or submit the question directly."),
-                        html.Hr(),
+                        html.Div(
+                            [
+                                html.Hr(),
+                                html.P("Click on an example to prefill the chatbox. Next, you can edit your prompt or submit the question directly."),
+                                html.Hr(),
+                            ],
+                            className="button-hint"
+                        ),
                         buttons,
-                        html.Div(id="example-output"),
                     ],
-                    width=3
+                    width=3,
+                    className="button-column"
                 ),
                 dbc.Col(
                     [
@@ -159,7 +184,8 @@ app.layout = dbc.Container(
                             className="weather-cards-wrapper"
                         )
                     ],
-                    width=3
+                    width=3,
+                    className="forecast-column"
                 ),
             ]
         )
