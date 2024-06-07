@@ -4,6 +4,7 @@ import dash_bootstrap_components as dbc
 from time import sleep
 from itertools import chain, zip_longest
 from examples import PROMPT_EXAMPLES
+from datetime import datetime, timezone, timedelta
 
 # weather: https://www.freeiconspng.com/thumbs/weather-icon-png/weather-icon-png-2.png
 # robot: https://cdn-icons-png.flaticon.com/512/3398/3398643.png
@@ -17,17 +18,17 @@ def header(name, app):
 
 def textbox(text, box="AI"):
     if box == "user":
-        return dbc.Card(text, body=True, color="primary", inverse=True, className="user-message message-box")
+        return dbc.Card(text, body=True, inverse=True, className="user-message message-box")
     elif box == "AI":
         thumbnail = html.Img(src=app.get_asset_url("bot.png"), className="thumbnail")
-        box = dbc.Card(text, body=True, color="light", inverse=False, className="ai-message message-box")
+        box = dbc.Card(text, body=True, inverse=False, className="ai-message message-box")
         return html.Div([thumbnail, box])
     else:
         raise ValueError("Incorrect option for box.")
 
 
 def weather_card(title, temp, cloud, wind, rain):
-    icon = html.Img(src=app.get_asset_url("weather-icon.png"), className="icons")
+    icon = html.Img(src=app.get_asset_url("weather-icon.png"), className="weather-icons")
     return dbc.Card(
         [
             dbc.CardBody(
@@ -42,14 +43,14 @@ def weather_card(title, temp, cloud, wind, rain):
                                         [
                                             dbc.Col(
                                                 [
-                                                    html.I(className="fas fa-temperature-half mar"),
+                                                    html.I(className="fas fa-temperature-half small-icons"),
                                                     f"{temp}°C"
                                                 ],
                                                 width=6
                                             ),
                                             dbc.Col(
                                                 [
-                                                    html.I(className="fas fa-cloud mar"),
+                                                    html.I(className="fas fa-cloud small-icons"),
                                                     f"{cloud}%"
                                                 ],
                                                 width=6
@@ -60,15 +61,15 @@ def weather_card(title, temp, cloud, wind, rain):
                                         [
                                             dbc.Col(
                                                 [
-                                                    html.I(className="fas fa-wind mar"),
-                                                    f"{wind} m/s"
+                                                    html.I(className="fas fa-droplet small-icons"),
+                                                    f"{rain} mm/h"
                                                 ],
                                                 width=6
                                             ),
                                             dbc.Col(
                                                 [
-                                                    html.I(className="fas fa-droplet mar"),
-                                                    f"{rain} mm/h"
+                                                    html.I(className="fas fa-wind small-icons"),
+                                                    f"{wind} m/s"
                                                 ],
                                                 width=6
                                             ),
@@ -120,7 +121,7 @@ conversation = html.Div(
 controls = dbc.InputGroup(
     children=[
         dbc.Textarea(id="user-input", placeholder="Write to the chatbot...", autofocus=True),
-        dbc.Button(html.I(className="fas fa-paper-plane fa-lg", style={"margin-right": "5px"}), id="submit"),
+        dbc.Button(html.I(className="fas fa-paper-plane fa-lg"), id="submit"),
     ]
 )
 
@@ -144,7 +145,7 @@ app.layout = dbc.Container(
                         html.Div(
                             [
                                 html.Hr(),
-                                html.P("Click on an example to prefill the chatbox. Next, you can edit your prompt or submit the question directly."),
+                                html.P("Click on any example to prefill the chatbox. Next, you can edit your prompt or submit your question directly!"),
                                 html.Hr(),
                             ],
                             className="button-hint"
@@ -165,7 +166,8 @@ app.layout = dbc.Container(
                         ),
                         controls,
                         dbc.Spinner(html.Div(id="loading-component"))
-                    ]
+                    ],
+                    className="chat-column"
                 ),
                 dbc.Col(
                     [
@@ -181,8 +183,9 @@ app.layout = dbc.Container(
                                 weather_card("Saturday", 23, 45, 7, 0.8),
                                 weather_card("Sunday", 24, 50, 8, 1.0),
                             ],
-                            className="weather-cards-wrapper"
-                        )
+                            className="location"
+                        ),
+                        html.Div(className="weather-cards-wrapper", id="weather-cards-wrapper-id"),
                     ],
                     width=3,
                     className="forecast-column"
