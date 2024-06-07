@@ -192,6 +192,24 @@ app.layout = dbc.Container(
 
 
 @callback(
+    [Output("weather-cards-wrapper-id", "children"), Output("location-name", "children")],
+    [Input("store-answers", "data")],
+    [State("submit", "n_clicks")]
+)
+def update_weather_cards(answer_history, n_clicks):
+    now = datetime.now(timezone(timedelta(hours=2)))
+    dates = ["Today", "Tomorrow"]
+    dates.extend([(now + timedelta(days=i)).strftime("%A") for i in range(2, 7)])
+
+    if (n_clicks is None) or (n_clicks == 0):
+        cards = [weather_card(day, "--", "--", "--", "--") for day in dates]
+        return cards, "No location set."
+
+    cards = [weather_card(day, "--", "--", "--", "--") for day in dates]
+    return cards, "No location set."
+
+
+@callback(
     Output("user-input", "value", allow_duplicate=True),
     [Input(f"example-button_{i}", "n_clicks") for i in range(len(PROMPT_EXAMPLES))],
     [State(f"example-button_{i}", "children") for i in range(len(PROMPT_EXAMPLES))],
