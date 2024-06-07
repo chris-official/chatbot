@@ -175,13 +175,8 @@ app.layout = dbc.Container(
                         html.Hr(),
                         html.Div(
                             [
-                                weather_card("Today", 20, 30, 5, 0.5),
-                                weather_card("Tuesday", 22, 40, 6, 0.7),
-                                weather_card("Wednesday", 18, 20, 4, 0.3),
-                                weather_card("Thursday", 19, 25, 5, 0.4),
-                                weather_card("Friday", 21, 35, 6, 0.6),
-                                weather_card("Saturday", 23, 45, 7, 0.8),
-                                weather_card("Sunday", 24, 50, 8, 1.0),
+                                html.I(className="fas fa-location-dot small-icons"),
+                                html.Span(id="location-name")
                             ],
                             className="location"
                         ),
