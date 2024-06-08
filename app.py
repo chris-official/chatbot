@@ -43,8 +43,8 @@ def textbox(text, box="AI"):
         raise ValueError("Incorrect option for box.")
 
 
-def weather_card(title, temp, cloud, wind, rain):
-    icon = html.Img(src=app.get_asset_url("weather-icon.png"), className="weather-icons")
+def weather_card(title, temp="--", cloud="--", wind="--", rain="--", icon="09d"):
+    icon = html.Img(src=f"https://openweathermap.org/img/wn/{icon}@2x.png", className="weather-icons")
     return dbc.Card(
         [
             dbc.CardBody(
