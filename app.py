@@ -328,6 +328,15 @@ def run_chatbot(n_clicks, n_submit, user_input, answer_history, debug_mode):
         return answer_history
 
 
+@app.callback(
+    Output('theme-css', 'href'),
+    [Input('theme-switch', 'value')]
+)
+def update_theme(theme):
+    if "dark" in theme:
+        return '/assets/dark_style.css'
+    return '/assets/style.css'
+
 
 if __name__ == "__main__":
     app.run_server(debug=True)
