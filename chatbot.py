@@ -8,9 +8,9 @@ from tools import OpenWeatherMapQuery
 load_dotenv()
 
 
-def setup_agent():
+def setup_agent(model: str = "gpt-3.5-turbo", temperature: float = 0.8, verbose: bool = False) -> tuple:
     # Create an instance of the ChatOpenAI model
-    llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7, max_retries=2, max_tokens=None, n=1, streaming=False)
+    llm = ChatOpenAI(model=model, temperature=temperature, max_retries=2, max_tokens=None, n=1, streaming=False)
 
     # Load the tools
     tools = [OpenWeatherMapQuery()]
@@ -48,7 +48,7 @@ def setup_agent():
     agent_executor = AgentExecutor(
         agent=agent,
         tools=tools,
-        verbose=True,
+        verbose=verbose,
         handle_parsing_errors=True,
         memory=memory,
         max_iterations=3,
@@ -57,6 +57,8 @@ def setup_agent():
     return agent_executor
 
 
-def query_llm(agent, question):
+def query_llm(agent, question: str, return_history: bool = False) -> dict | str:
     ai_response = agent.invoke({"input": question})
-    return ai_response
+    if return_history:
+        return ai_response
+    return ai_response["output"]
