@@ -17,7 +17,19 @@ agent, tools = setup_agent()
 def header(name, app):
     title = html.H1(name, style={"margin-top": 5})
     logo = html.Img(src=app.get_asset_url("weather-icon.png"), id="logo")
-    return dbc.Row([dbc.Col(title, md=8), dbc.Col(logo, md=4)])
+    switch = dbc.Checklist(
+        options=[{"label": "Debug Mode", "value": 1}],
+        value=[1],
+        id="debug-switch",
+        switch=True,
+    )
+    select = dbc.Checklist(
+        options=[{"label": "Dark Theme", "value": "dark"}],
+        value=[],
+        id="theme-switch",
+        switch=True,
+    )
+    return dbc.Row([dbc.Col(title, md=8), dbc.Col([switch, select], md=4)])
 
 
 def textbox(text, box="AI"):
