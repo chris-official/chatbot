@@ -78,7 +78,7 @@ class OpenWeatherMapAPIWrapper:
 
         weather_current = self.current_template.format(
             location=loc,
-            time=datetime.fromtimestamp(current["dt"] + self.weather["timezone_offset"], timezone.utc).strftime('%Y-%m-%d %H:%M'),
+            time=datetime.fromtimestamp(current["dt"] + self.weather["timezone_offset"], timezone.utc).strftime('%A %Y-%m-%d %H:%M'),
             temp=current["temp"],
             humidity=current["humidity"],
             uvi=current["uvi"],
@@ -91,7 +91,7 @@ class OpenWeatherMapAPIWrapper:
 
         weather_forecasts = [self.future_template.format(
             location=loc,
-            date=datetime.fromtimestamp(data["dt"] + self.weather["timezone_offset"], timezone.utc).strftime('%Y-%m-%d'),
+            date=datetime.fromtimestamp(data["dt"] + self.weather["timezone_offset"], timezone.utc).strftime('%A %Y-%m-%d'),
             summary=data["summary"],
             temp_morn=data["temp"]["morn"],
             temp_day=data["temp"]["day"],
