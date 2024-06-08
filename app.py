@@ -221,12 +221,36 @@ def update_weather_cards(answer_history, n_clicks):
     dates = ["Today", "Tomorrow"]
     dates.extend([(now + timedelta(days=i)).strftime("%A") for i in range(2, 7)])
 
-    if (n_clicks is None) or (n_clicks == 0):
-        cards = [weather_card(day, "--", "--", "--", "--") for day in dates]
-        return cards, "No location set."
+    wrapper = tools[0].api_wrapper
+    location_data = wrapper.location
+    weather_data = wrapper.weather
 
-    cards = [weather_card(day, "--", "--", "--", "--") for day in dates]
-    return cards, "No location set."
+    if location_data is not None:
+        location = location_data["name"]
+        if location_data.get("state") is not None:
+            location += f", {location_data['state']}"
+        location += f", {location_data['country']}"
+    else:
+        location = "No location set."
+
+    if (n_clicks is None) or (weather_data is None):
+        cards = [weather_card(day) for day in dates]
+        return cards, location
+
+    daily = weather_data["daily"]
+    icons = wrapper.get_icon_ids()
+    cards = [
+        weather_card(
+            day,
+            round(data["temp"]["day"]),
+            round(data["clouds"]),
+            round(data["wind_speed"]),
+            round(data.get("rain", 0.0), 1),
+            icon
+        )
+        for day, data, icon in zip(dates, daily, icons)
+    ]
+    return cards, location
 
 
 @callback(
