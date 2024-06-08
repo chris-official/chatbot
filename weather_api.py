@@ -111,10 +111,9 @@ class OpenWeatherMapAPIWrapper:
 
         return f"{weather_current}\n####\n{weather_forecast}"
 
-    def get_icon_urls(self) -> list[str]:
+    def get_icon_ids(self) -> list[str]:
         icon_ids = [data["weather"][0]["icon"] for data in self.weather["daily"]]
-        icon_urls = [f"https://openweathermap.org/img/wn/{icon_id}@4x.png" for icon_id in icon_ids]
-        return icon_urls
+        return icon_ids
 
     @staticmethod
     def handle_response(response):
