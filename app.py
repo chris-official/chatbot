@@ -10,6 +10,9 @@ from chatbot import setup_agent, query_llm
 # weather: https://www.freeiconspng.com/thumbs/weather-icon-png/weather-icon-png-2.png
 # robot: https://cdn-icons-png.flaticon.com/512/3398/3398643.png
 
+# setup chatbot
+agent, tools = setup_agent()
+
 
 def header(name, app):
     title = html.H1(name, style={"margin-top": 5})
