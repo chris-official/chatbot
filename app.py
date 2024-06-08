@@ -48,14 +48,14 @@ def weather_card(title, temp, cloud, wind, rain):
                                             dbc.Col(
                                                 [
                                                     html.I(className="fas fa-temperature-half small-icons"),
-                                                    f"{temp}°C"
+                                                    f"{temp} °C"
                                                 ],
                                                 width=6
                                             ),
                                             dbc.Col(
                                                 [
                                                     html.I(className="fas fa-cloud small-icons"),
-                                                    f"{cloud}%"
+                                                    f"{cloud} %"
                                                 ],
                                                 width=6
                                             ),
@@ -66,7 +66,7 @@ def weather_card(title, temp, cloud, wind, rain):
                                             dbc.Col(
                                                 [
                                                     html.I(className="fas fa-droplet small-icons"),
-                                                    f"{rain} mm/h"
+                                                    f"{rain} mm"
                                                 ],
                                                 width=6
                                             ),
