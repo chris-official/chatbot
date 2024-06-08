@@ -11,7 +11,7 @@ from chatbot import setup_agent, query_llm
 # robot: https://cdn-icons-png.flaticon.com/512/3398/3398643.png
 
 # setup chatbot
-agent, tools = setup_agent()
+agent, tools = setup_agent(model="gpt-3.5-turbo", temperature=0.8, verbose=False)
 
 
 def header(name, app):
