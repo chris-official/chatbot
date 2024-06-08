@@ -304,19 +304,29 @@ def update_conversation(n_clicks, n_submit, user_input, question_history):
 
 @callback(
     Output("store-answers", "data"),
-    [Input("submit", "n_clicks"), Input("user-input", "n_submit")],
-    [State("user-input", "value"), State("store-answers", "data")],
+    [
+        Input("submit", "n_clicks"),
+        Input("user-input", "n_submit")
+    ],
+    [
+        State("user-input", "value"),
+        State("store-answers", "data"),
+        State("debug-switch", "value"),
+    ],
 )
-def run_chatbot(n_clicks, n_submit, user_input, answer_history):
-    if n_clicks == 0:
-        return []
-
+def run_chatbot(n_clicks, n_submit, user_input, answer_history, debug_mode):
     if user_input is None or user_input == "":
         return answer_history
 
-    sleep(1)
-    answer_history.append("Here will be the AI response.")
-    return answer_history
+    if len(debug_mode) == 1:
+        sleep(1)
+        answer_history.append("Here will be the AI response.")
+        return answer_history
+    else:
+        response = query_llm(agent, user_input)
+        answer_history.append(response)
+        return answer_history
+
 
 
 if __name__ == "__main__":
