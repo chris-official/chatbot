@@ -5,6 +5,7 @@ from time import sleep
 from itertools import chain, zip_longest
 from examples import PROMPT_EXAMPLES
 from datetime import datetime, timezone, timedelta
+from chatbot import setup_agent, query_llm
 
 # weather: https://www.freeiconspng.com/thumbs/weather-icon-png/weather-icon-png-2.png
 # robot: https://cdn-icons-png.flaticon.com/512/3398/3398643.png
