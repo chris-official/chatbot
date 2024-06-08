@@ -54,7 +54,7 @@ def setup_agent(model: str = "gpt-3.5-turbo", temperature: float = 0.8, verbose:
         max_iterations=3,
     )
 
-    return agent_executor
+    return agent_executor, tools
 
 
 def query_llm(agent, question: str, return_history: bool = False) -> dict | str:
