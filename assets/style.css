@@ -1,11 +1,16 @@
 body {
     font-family: "Poppins", sans-serif;
     color: #494949;
+    background-color: white;
 }
 
 p {
     font-family: inherit;
     color: inherit;
+}
+
+#main-container {
+    height: 100vh;
 }
 
 .container-fluid {
@@ -67,6 +72,8 @@ p {
 .weather-icons {
     width: 100%;
     max-width: 6rem;
+    border-radius: 20%;
+    background-color: white;
 }
 
 .weather-card {
@@ -150,5 +157,14 @@ p {
       margin: auto;
       padding-top: 5rem;
       min-width: 26rem;
+  }
+}
+
+@media (pointer: none), (pointer: coarse) {
+  .button-column {
+      display: none;
+  }
+  .forecast-column {
+      display: none;
   }
 }
