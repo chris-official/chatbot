@@ -148,62 +148,66 @@ buttons = html.Div(
     className="d-grid gap-2 button-wrapper",
 )
 
-app.layout = dbc.Container(
-    fluid=True,
-    children=[
-        header("Weather Chatbot", app),
-        html.Hr(),
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        html.H2("Examples"),
-                        html.Div(
-                            [
-                                html.Hr(),
-                                html.P("Click on any example to prefill the chatbox. Next, you can edit your prompt or submit your question directly!"),
-                                html.Hr(),
-                            ],
-                            className="button-hint"
-                        ),
-                        buttons,
-                    ],
-                    width=3,
-                    className="button-column"
-                ),
-                dbc.Col(
-                    [
-                        dcc.Store(id="store-questions", data=[], storage_type="memory"),
-                        conversation,
-                        dbc.Spinner(
-                            dcc.Store(id="store-answers", data=[], storage_type="memory"),
-                            color="secondary",
-                            spinner_style={"position": "absolute", "bottom": "10px", "left": "5px"},
-                        ),
-                        controls,
-                        dbc.Spinner(html.Div(id="loading-component"))
-                    ],
-                    className="chat-column"
-                ),
-                dbc.Col(
-                    [
-                        html.H2("7-Day Forecast"),
-                        html.Hr(),
-                        html.Div(
-                            [
-                                html.I(className="fas fa-location-dot small-icons"),
-                                html.Span(id="location-name")
-                            ],
-                            className="location"
-                        ),
-                        html.Div(className="weather-cards-wrapper", id="weather-cards-wrapper-id"),
-                    ],
-                    width=3,
-                    className="forecast-column"
-                ),
-            ]
-        )
-    ]
+app.layout = html.Div(
+    dbc.Container(
+        fluid=True,
+        children=[
+            html.Link(id='theme-css', rel='stylesheet', href='/assets/style.css'),
+            header("Weather Chatbot", app),
+            html.Hr(),
+            dbc.Row(
+                [
+                    dbc.Col(
+                        [
+                            html.H2("Examples"),
+                            html.Div(
+                                [
+                                    html.Hr(),
+                                    html.P("Click on any example to prefill the chatbox. Next, you can edit your prompt or submit your question directly!"),
+                                    html.Hr(),
+                                ],
+                                className="button-hint"
+                            ),
+                            buttons,
+                        ],
+                        width=3,
+                        className="button-column"
+                    ),
+                    dbc.Col(
+                        [
+                            dcc.Store(id="store-questions", data=[], storage_type="memory"),
+                            conversation,
+                            dbc.Spinner(
+                                dcc.Store(id="store-answers", data=[], storage_type="memory"),
+                                color="secondary",
+                                spinner_style={"position": "absolute", "bottom": "10px", "left": "5px"},
+                            ),
+                            controls,
+                            dbc.Spinner(html.Div(id="loading-component"))
+                        ],
+                        className="chat-column"
+                    ),
+                    dbc.Col(
+                        [
+                            html.H2("7-Day Forecast"),
+                            html.Hr(),
+                            html.Div(
+                                [
+                                    html.I(className="fas fa-location-dot small-icons"),
+                                    html.Span(id="location-name")
+                                ],
+                                className="location"
+                            ),
+                            html.Div(className="weather-cards-wrapper", id="weather-cards-wrapper-id"),
+                        ],
+                        width=3,
+                        className="forecast-column"
+                    ),
+                ]
+            )
+        ]
+    ),
+    id="main-container"
 )
 
 
