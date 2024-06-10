@@ -3,7 +3,7 @@ from dash import html, dcc, callback, Output, Input, State, ctx
 import dash_bootstrap_components as dbc
 from time import sleep
 from itertools import chain, zip_longest
-from examples import PROMPT_EXAMPLES
+from templates import PROMPT_EXAMPLES
 from datetime import datetime, timezone, timedelta
 from chatbot import setup_agent, query_llm
 
@@ -43,7 +43,7 @@ def textbox(text, box="AI"):
         raise ValueError("Incorrect option for box.")
 
 
-def weather_card(title, temp="--", cloud="--", wind="--", rain="--", icon="09d"):
+def weather_card(title, temp="--", cloud="--", wind="--", rain="--", icon="02d"):
     icon = html.Img(src=f"https://openweathermap.org/img/wn/{icon}@2x.png", className="weather-icons")
     return dbc.Card(
         [
@@ -51,7 +51,7 @@ def weather_card(title, temp="--", cloud="--", wind="--", rain="--", icon="09d")
                 [
                     dbc.Row(
                         [
-                            dbc.Col(icon, width=3, xxl=2, className="icon-col"),
+                            dbc.Col(icon, width=3, className="icon-col"),
                             dbc.Col(
                                 [
                                     html.H5(title, className="card-title"),
@@ -93,7 +93,6 @@ def weather_card(title, temp="--", cloud="--", wind="--", rain="--", icon="09d")
                                     )
                                 ],
                                 width=9,
-                                xxl=10,
                             )
                         ]
                     )
@@ -153,7 +152,7 @@ app.layout = html.Div(
         fluid=True,
         children=[
             html.Link(id='theme-css', rel='stylesheet', href='/assets/style.css'),
-            header("Weather Chatbot", app),
+            header("Weather Chatbot"),
             html.Hr(),
             dbc.Row(
                 [
