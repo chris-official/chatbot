@@ -224,7 +224,7 @@ def update_weather_cards(answer_history, n_clicks):
     location_data = wrapper.location
     weather_data = wrapper.weather
 
-    if location_data is not None:
+    if (location_data is not None) and (answer_history != []):
         location = location_data["name"]
         if location_data.get("state") is not None:
             location += f", {location_data['state']}"
