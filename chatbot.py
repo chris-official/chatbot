@@ -4,6 +4,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain.memory import ConversationBufferMemory
 from dotenv import load_dotenv
 from tools import OpenWeatherMapQuery
+from templates import SYSTEM_PROMPT
 
 load_dotenv()
 
@@ -18,20 +19,7 @@ def setup_agent(model: str = "gpt-3.5-turbo", temperature: float = 0.8, verbose:
     # Create a prompt template for the chatbot
     prompt = ChatPromptTemplate.from_messages(
         [
-            (
-                "system",
-                "You are a weather assistant chatbot named 'Sky'. Always be kind and polite to the user \
-                and talk in a relaxed, casual, happy and natural manner. Your expertise is exclusively in providing \
-                information and advice about anything related to the weather. This includes information about \
-                temperature, cloud coverage, precipitation, snowfall, wind speed, and general weather-related queries. \
-                You can get up to date information by using the OpenWeatherMap tool which provides you with a report of \
-                the current weather and the daily forecasts for the next 7 days for a requested location. You can \
-                use this information as context to write your response to the user. Make sure to not overwhelm the user \
-                with every detail unless you are asked to do so. Focus on the users requested information and the most \
-                important weather infos that were mentioned earlier. You should not provide information outside of \
-                this scope. If a question is not about weather, kindly decline and hint towards your specialization in \
-                weather related queries.",
-            ),
+            ("system", SYSTEM_PROMPT),
             ("placeholder", "{chat_history}"),
             ("human", "{input}"),
             ("placeholder", "{agent_scratchpad}"),
