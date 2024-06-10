@@ -1,22 +1,14 @@
 import os
 import requests
 from datetime import datetime, timezone
+from templates import CURRENT_TEMPLATE, FUTURE_TEMPLATE
 
 
 class OpenWeatherMapAPIWrapper:
     def __init__(self):
         self.key = os.getenv('OPENWEATHERMAP_API_KEY')
-        self.current_template = """Location: {location}
-        Current time at this location is {time}.
-        Current weather is {weather} with a temperature of {temp:.0f}°C, humidity of {humidity}%, UV index of {uvi:.0f},
-        cloud coverage of {clouds}%, wind speed of {wind_speed:.0f} m/s. There is {rain:.1f} mm/h of rain and {snow:.1f}
-        mm/h of snow."""
-        self.future_template = """Date: {date}
-        Weather summary: {summary}
-        Weather is {weather} with a temperature of {temp_morn:.0f}°C in the morning, {temp_day:.0f}°C at day,
-        {temp_eve:.0f}°C in the evening, and {temp_night:.0f}°C at night. Humidity is {humidity}%, UV index is
-        {uvi:.0f}, cloud coverage is {clouds}%, wind speed is {wind_speed:.0f} m/s. The Probability of precipitation is
-        {pop:.0%}. There is total volume of {rain:.1f} mm of rain and {snow:.1f} mm of snow."""
+        self.current_template = CURRENT_TEMPLATE
+        self.future_template = FUTURE_TEMPLATE
         self.location = None
         self.weather = None
 
