@@ -14,18 +14,18 @@ from chatbot import setup_agent, query_llm
 agent, tools = setup_agent(model="gpt-3.5-turbo", temperature=0.8, verbose=False)
 
 
-def header(name, app):
+def header(name):
     title = html.H1(name, style={"margin-top": 5})
     logo = html.Img(src=app.get_asset_url("weather-icon.png"), id="logo")
     switch = dbc.Checklist(
         options=[{"label": "Debug Mode", "value": 1}],
-        value=[1],
+        value=[],
         id="debug-switch",
         switch=True,
     )
     select = dbc.Checklist(
         options=[{"label": "Dark Theme", "value": "dark"}],
-        value=[],
+        value=["dark"],
         id="theme-switch",
         switch=True,
     )
