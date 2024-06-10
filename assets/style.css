@@ -136,6 +136,17 @@ p {
     color: #494949;
 }
 
+#debug-switch {
+    display: inline-block;
+    float: right;
+}
+
+#theme-switch {
+    display: inline-block;
+    float: right;
+    margin-right: 1rem;
+}
+
 .btn-primary {
     --bs-btn-color: #383838;
     --bs-btn-bg: #f5f5f5;
