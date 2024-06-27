@@ -1,7 +1,10 @@
 import os
 import requests
+from dotenv import load_dotenv
 from datetime import datetime, timezone
-from templates import CURRENT_TEMPLATE, FUTURE_TEMPLATE
+from bot.templates import CURRENT_TEMPLATE, FUTURE_TEMPLATE
+
+load_dotenv()
 
 
 class OpenWeatherMapAPIWrapper:

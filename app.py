@@ -3,9 +3,9 @@ from dash import html, dcc, callback, Output, Input, State, ctx
 import dash_bootstrap_components as dbc
 from time import sleep
 from itertools import chain, zip_longest
-from templates import PROMPT_EXAMPLES
+from bot.templates import PROMPT_EXAMPLES
 from datetime import datetime, timezone, timedelta
-from chatbot import setup_agent, query_llm
+from bot.chatbot import setup_agent, query_llm
 
 # robot: https://cdn-icons-png.flaticon.com/512/3398/3398643.png
 
@@ -115,10 +115,10 @@ def _update_display(questions, answers):
 
 font = "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 
-# Define app
+# Define app, themes, icons, fonts, and title
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LITERA, dbc.icons.FONT_AWESOME, font])
 app.title = "Weather Chatbot"
-# server = app.server
+server = app.server
 
 
 # Define Layout
@@ -338,4 +338,4 @@ def update_theme(theme):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True, port=8050)
+    app.run_server(debug=False)
