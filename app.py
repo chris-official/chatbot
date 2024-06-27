@@ -117,6 +117,7 @@ font = "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0
 
 # Define app
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LITERA, dbc.icons.FONT_AWESOME, font])
+app.title = "Weather Chatbot"
 # server = app.server
 
 
@@ -337,4 +338,4 @@ def update_theme(theme):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=True, port=8050)
