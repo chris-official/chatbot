@@ -23,7 +23,7 @@ def header(name):
         switch=True,
     )
     select = dbc.Checklist(
-        options=[{"label": "Dark Theme", "value": "dark"}],
+        options=[{"label": "Dark Mode", "value": "dark"}],
         value=["dark"],
         id="theme-switch",
         switch=True,
