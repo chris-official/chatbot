@@ -3,9 +3,9 @@ from dash import html, dcc, callback, Output, Input, State, ctx
 import dash_bootstrap_components as dbc
 from time import sleep
 from itertools import chain, zip_longest
-from bot.templates import PROMPT_EXAMPLES
 from datetime import datetime, timezone, timedelta
-from bot.chatbot import setup_agent, query_llm
+from bot import setup_agent, query_llm
+from prompts import PROMPT_EXAMPLES
 
 # robot: https://cdn-icons-png.flaticon.com/512/3398/3398643.png
 

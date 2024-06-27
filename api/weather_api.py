@@ -2,7 +2,7 @@ import os
 import requests
 from dotenv import load_dotenv
 from datetime import datetime, timezone
-from bot.templates import CURRENT_TEMPLATE, FUTURE_TEMPLATE
+from prompts import CURRENT_TEMPLATE, FUTURE_TEMPLATE
 
 load_dotenv()
 

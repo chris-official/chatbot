@@ -3,8 +3,8 @@ from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.memory import ConversationBufferMemory
 from dotenv import load_dotenv
-from api.tools import OpenWeatherMapQuery
-from templates import SYSTEM_PROMPT
+from api import OpenWeatherMapQuery
+from prompts import SYSTEM_PROMPT
 
 load_dotenv()
 
