@@ -2,15 +2,17 @@
 
 ## Description
 
-This is a weather chatbot that uses the [langchain](https://python.langchain.com/v0.2/docs/introduction/) library
+This is a weather chatbot that uses the [Langchain](https://python.langchain.com/v0.2/docs/introduction/) library
 and [OpenWeatherMap](https://openweathermap.org/api) API to generate responses to weather-related user queries. A
-user interface is provided by a [dash](https://dash.plotly.com/tutorial) web application that allows users to chat with the chatbot.
+user interface is provided by a [Dash](https://dash.plotly.com/tutorial) web application that allows users to chat with
+the chatbot. The chatbot has been deployed on [Render](https://render.com/) and can be accessed online by visiting
+[iu-weather-chatbot.onrender.com](https://iu-weather-chatbot.onrender.com).
 
 ## Installation
 
 ### Visit online chatbot - no installation required (recommended)
 
-You can visit the online chatbot [here](https://chatbot-weather.herokuapp.com/).
+You can visit the online chatbot [here](https://iu-weather-chatbot.onrender.com).
 
 ### Run the chatbot locally - requires manual installation
 
@@ -21,7 +23,7 @@ python -m venv chatbot_env  # Create a new virtual environment
 chatbot_env/Scripts/activate.bat  # Activate the virtual environment
 ```
 
-Copy the contents of the chatbot folder into the virtual environment directory and install the dependencies:
+Copy the contents of my chatbot repository into the virtual environment directory and install the dependencies:
 
 ```bash
 pip install -r requirements.txt  # Install the dependencies
