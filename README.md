@@ -38,7 +38,8 @@ OPENWEATHERMAP_API_KEY="your_openweathermap_api_key"
 
 > [!WARNING]
 > When no API keys are provided, the chatbot will run in offline mode and will not make any API calls.
-> Instead, it will output a default response.
+> Instead, it will output a default response. For the chatbot to work properly, you need to provide the API keys or
+> visit the online chatbot.
 
 ## Usage
 
