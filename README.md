@@ -8,13 +8,13 @@ user interface is provided by a [dash](https://dash.plotly.com/tutorial) web app
 
 ## Installation
 
-### 1. Visit online chatbot (no installation required)
+### Visit online chatbot - no installation required (recommended)
 
 You can visit the online chatbot [here](https://chatbot-weather.herokuapp.com/).
 
-### 2. Run the chatbot locally (requires installation)
+### Run the chatbot locally - requires manual installation
 
-Create a new virtual environment and install the dependencies:
+Create a new virtual environment and activate it:
     
 ```bash
 python -m venv chatbot_env  # Create a new virtual environment
@@ -27,7 +27,9 @@ Copy the contents of the chatbot folder into the virtual environment directory a
 pip install -r requirements.txt  # Install the dependencies
 ```
 
-Open the .env file and add your OpenAI and OpenWeatherMap API key.
+Open the .env file and add your OpenAI and OpenWeatherMap API key. You can get your OpenAI key
+[here](https://platform.openai.com/api-keys) and your OpenWeatherMap key
+[here](https://home.openweathermap.org/api_keys). Finally, the file should look like this:
 
 ```bash
 OPENAI_API_KEY="your_openai_api_key"
@@ -40,11 +42,11 @@ OPENWEATHERMAP_API_KEY="your_openweathermap_api_key"
 
 ## Usage
 
-To run the chatbot, execute the following command:
+To run the chatbot interface on your machine, execute the following command:
 
 ```bash
 python app.py
 ```
 
-This will start a local server on `http://localhost:5000/`.
-Just open this URL in your browser to start chatting with the chatbot.
+This will start a local server on [`http://127.0.0.1:8050`](http://127.0.0.1:8050).
+Just open this URL in your browser to start chatting with the chatbot locally.
