@@ -7,7 +7,6 @@ from templates import PROMPT_EXAMPLES
 from datetime import datetime, timezone, timedelta
 from chatbot import setup_agent, query_llm
 
-# weather: https://www.freeiconspng.com/thumbs/weather-icon-png/weather-icon-png-2.png
 # robot: https://cdn-icons-png.flaticon.com/512/3398/3398643.png
 
 # setup chatbot
@@ -16,7 +15,7 @@ agent, tools = setup_agent(model="gpt-3.5-turbo", temperature=0.8, verbose=False
 
 def header(name):
     title = html.H1(name, style={"margin-top": 5})
-    logo = html.Img(src=app.get_asset_url("weather-icon.png"), id="logo")
+    # logo = html.Img(src=app.get_asset_url("logo.png"), id="logo")
     switch = dbc.Checklist(
         options=[{"label": "Debug Mode", "value": 1}],
         value=[],
