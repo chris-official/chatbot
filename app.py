@@ -13,9 +13,8 @@ from prompts import PROMPT_EXAMPLES
 agent, tools = setup_agent(model="gpt-3.5-turbo", temperature=0.8, verbose=False)
 
 
-def header(name):
+def header(name: str) -> dbc.Row:
     title = html.H1(name, style={"margin-top": 5})
-    # logo = html.Img(src=app.get_asset_url("logo.png"), id="logo")
     switch = dbc.Checklist(
         options=[{"label": "Debug Mode", "value": 1}],
         value=[],
@@ -31,10 +30,10 @@ def header(name):
     return dbc.Row([dbc.Col(title, md=8), dbc.Col([switch, select], md=4)])
 
 
-def textbox(text, box="AI"):
+def textbox(text: str, box: str = "ai") -> dbc.Card | html.Div:
     if box == "user":
         return dbc.Card(text, body=True, inverse=True, className="user-message message-box")
-    elif box == "AI":
+    elif box == "ai":
         thumbnail = html.Img(src=app.get_asset_url("bot.png"), className="thumbnail")
         box = dbc.Card(text, body=True, inverse=False, className="ai-message message-box")
         return html.Div([thumbnail, box])
@@ -42,7 +41,7 @@ def textbox(text, box="AI"):
         raise ValueError("Incorrect option for box.")
 
 
-def weather_card(title, temp="--", cloud="--", wind="--", rain="--", icon="02d"):
+def weather_card(title: str, temp: str = "--", cloud: str = "--", wind: str = "--", rain: str = "--", icon: str = "02d") -> dbc.Card:
     icon = html.Img(src=f"https://openweathermap.org/img/wn/{icon}@2x.png", className="weather-icons")
     return dbc.Card(
         [
@@ -102,18 +101,19 @@ def weather_card(title, temp="--", cloud="--", wind="--", rain="--", icon="02d")
     )
 
 
-def _update_display(questions, answers):
+def _update_display(questions: list, answers: list) -> list:
     history = [x for x in chain(*zip_longest(questions, answers)) if x is not None]
-    out = [textbox("Hi, my name is Sky! How can I help you?", box="AI")]
+    out = [textbox("Hi, my name is Sky! How can I help you?", box="ai")]
     messages = [
-        textbox(x, box="user") if i % 2 == 0 else textbox(x, box="AI")
+        textbox(x, box="user") if i % 2 == 0 else textbox(x, box="ai")
         for i, x in enumerate(history)
     ]
     out.extend(messages)
     return out
 
 
-font = "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+font = ("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;"
+        "0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap")
 
 # Define app, themes, icons, fonts, and title
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.LITERA, dbc.icons.FONT_AWESOME, font])
@@ -319,7 +319,7 @@ def run_chatbot(n_clicks, n_submit, user_input, answer_history, debug_mode):
 
     if len(debug_mode) == 1:
         sleep(1)
-        answer_history.append("Here will be the AI response.")
+        answer_history.append("The weather is nice today! Please provide valid API keys to get real weather data.")
         return answer_history
     else:
         response = query_llm(agent, user_input)

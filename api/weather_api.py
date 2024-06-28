@@ -112,7 +112,7 @@ class OpenWeatherMapAPIWrapper:
         return icon_ids
 
     @staticmethod
-    def handle_response(response):
+    def handle_response(response) -> dict | str:
         match response.status_code:
             case 200:
                 return response.json()
