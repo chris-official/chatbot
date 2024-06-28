@@ -1,7 +1,7 @@
 from langchain_openai import ChatOpenAI
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate
-from langchain.memory import ConversationBufferMemory
+from langchain.memory import ConversationBufferWindowMemory
 from dotenv import load_dotenv
 from api import OpenWeatherMapQuery
 from prompts import SYSTEM_PROMPT
@@ -27,7 +27,7 @@ def setup_agent(model: str = "gpt-3.5-turbo", temperature: float = 0.7, verbose:
     )
 
     # Create a memory object to store the chat history
-    memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
+    memory = ConversationBufferWindowMemory(k=4, memory_key="chat_history", return_messages=True)
 
     # Construct the Tools agent
     agent = create_tool_calling_agent(llm, tools, prompt)
