@@ -14,13 +14,12 @@ and can be accessed online by visiting [iu-weather-chatbot.onrender.com](https:/
 No manual installation is required, and you can start chatting immediately! <br>
 You can visit the online chatbot here: [iu-weather-chatbot.onrender.com](https://iu-weather-chatbot.onrender.com)
 
-> [!NOTE]
+> [!TIP]
 > When accessing the online chatbot after a longer period of inactivity, you may need to wait a few seconds for the
 > server to start up. Therefore, please be patient and wait for the website to load.
-
-> [!TIP]
+> 
 > For the best experience, use the chatbot on a desktop or laptop. Even though the chatbot is mobile-friendly,
-> the UI is optimized for larger screens and some features are disabled to fit the smaller screen sizes of mobile
+> the UI is optimized for larger screens and some features are disabled to fit the smaller screen size of mobile
 > devices.
 
 ## Manual Installation
@@ -83,6 +82,9 @@ simply clicking on them and submitting the query. This column is hidden on mobil
 specified location for the next 7 days. The information is updated automatically as soon as the user interacts with the
 chatbot. This column is hidden on mobile devices.
 4. **Theme Switch**: The theme switch button in the top right corner allows users to switch between light and dark mode.
+
+> [!NOTE]
+> The Prompt Examples and Weather Information columns are hidden on mobile devices to provide a better user experience.
 
 ## Example
 
