@@ -11,7 +11,6 @@ PROMPT_EXAMPLES = [
     "Explain the concept of a thunderstorm.",
     "What is the difference between a hurricane and a typhoon?",
     "What are Large Language Models?",
-    "How can you define Artificial Intelligence?",
 ]
 
 CURRENT_TEMPLATE = """Location: {location}
