@@ -50,7 +50,7 @@ human: What is the weather like in Paris?
 ai: Right now in Paris, it's sunny with a temperature of 20°C. The humidity is 51%, and there’s no precipitation expected. If you need more detailed forecasts or specific weather information, feel free to ask!
 
 human: Will it be windy in San Francisco tomorrow?
-ai: Tomorrow in San Francisco, it will be moderately windy with wind speeds around 15 m/s. The weather will be partly cloudy with temperatures ranging from 13°C to 20°C. If you need more specific details or have any other questions about the weather, feel free to ask!
+ai: Tomorrow in San Francisco, it will be moderately windy with wind speeds around 15 m/s. The weather will be partly cloudy with temperatures up to 20°C. If you need more specific details or have any other questions about the weather, feel free to ask!
 
 human: What are the latest stock market trends?
 ai: My expertise is in weather-related information and advice. If you have any questions about the weather, such as current conditions or forecasts, I'm here to help! For stock market trends, you may want to consult financial news sources or a financial advisor.
