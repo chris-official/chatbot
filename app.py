@@ -1,3 +1,4 @@
+import os
 import dash
 from dash import html, dcc, callback, Output, Input, State, ctx
 import dash_bootstrap_components as dbc
@@ -338,4 +339,6 @@ def update_theme(theme):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=False)
+    port = int(os.getenv("PORT", 8050))
+    host = str(os.getenv("HOST", "127.0.0.1"))
+    app.run_server(debug=False, port=port, host=host)
