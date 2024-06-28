@@ -9,9 +9,9 @@ from prompts import SYSTEM_PROMPT
 load_dotenv()
 
 
-def setup_agent(model: str = "gpt-3.5-turbo", temperature: float = 0.8, verbose: bool = False) -> tuple:
+def setup_agent(model: str = "gpt-3.5-turbo", temperature: float = 0.7, verbose: bool = False) -> tuple:
     # Create an instance of the ChatOpenAI model
-    llm = ChatOpenAI(model=model, temperature=temperature, max_retries=2, max_tokens=None, n=1, streaming=False)
+    llm = ChatOpenAI(model=model, temperature=temperature, max_retries=2, max_tokens=500, n=1, streaming=False)
 
     # Load the tools
     tools = [OpenWeatherMapQuery()]

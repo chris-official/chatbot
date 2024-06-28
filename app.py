@@ -10,7 +10,7 @@ from prompts import PROMPT_EXAMPLES
 # robot: https://cdn-icons-png.flaticon.com/512/3398/3398643.png
 
 # setup chatbot
-agent, tools = setup_agent(model="gpt-3.5-turbo", temperature=0.8, verbose=False)
+agent, tools = setup_agent(model="gpt-3.5-turbo", temperature=0.5, verbose=False)
 
 
 def header(name: str) -> dbc.Row:
