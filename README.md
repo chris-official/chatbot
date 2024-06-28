@@ -46,11 +46,6 @@ OPENAI_API_KEY="your_openai_api_key"
 OPENWEATHERMAP_API_KEY="your_openweathermap_api_key"
 ```
 
-> [!WARNING]
-> When no API keys are provided, the chatbot will run in offline mode and will not make any API calls.
-> Instead, a default response will be displayed. For the chatbot to work properly, you must provide the API keys or
-> visit the online chatbot.
-
 To start the chatbot interface on your machine, run `app.py` by executing the following command:
 
 ```bash
@@ -59,6 +54,11 @@ python app.py
 
 This will initiate a local server at [`http://127.0.0.1:8050`](http://127.0.0.1:8050).
 To start chatting with the chatbot, simply open this URL in your browser.
+
+> [!WARNING]
+> When no API keys are provided, the chatbot will run in offline mode and will not make any API calls.
+> Instead, a default response will be displayed. For the chatbot to work properly, you must provide the API keys or
+> visit the online chatbot.
 
 ## Features
 
