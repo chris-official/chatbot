@@ -96,3 +96,8 @@ made a successful API call.
 2. Press the "Send" button or hit "Enter" to submit your query.
 3. Wait for the chatbot to generate a response.
 4. Keep the conversation going by asking more questions!
+
+## Troubleshooting
+
+If you encounter any server related issues (Error code: 5XX), please check the server status on the
+[Render Status Page](https://status.render.com) for any ongoing incidents and try again later.
