@@ -36,7 +36,9 @@ def textbox(text: str, box: str = "ai") -> dbc.Card | html.Div:
         return dbc.Card(text, body=True, inverse=True, className="user-message message-box")
     elif box == "ai":
         thumbnail = html.Img(src=app.get_asset_url("bot.png"), className="thumbnail")
-        box = dbc.Card(text, body=True, inverse=False, className="ai-message message-box")
+        box = dbc.Card(
+            dcc.Markdown(text, className="mgs-text"), body=True, inverse=False, className="ai-message message-box"
+        )
         return html.Div([thumbnail, box])
     else:
         raise ValueError("Incorrect option for box.")
