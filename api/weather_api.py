@@ -126,3 +126,10 @@ class OpenWeatherMapAPIWrapper:
                 return "429 Too Many Requests"
             case _:
                 return f"{response.status_code} Unexpected Error"
+
+
+def check_open_weather_key() -> bool:
+    open_weather = os.getenv("OPENWEATHERMAP_API_KEY", "")
+    if len(open_weather) < 16:
+        return False
+    return True
