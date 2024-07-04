@@ -169,7 +169,7 @@ app.layout = html.Div(
                 "The chatbot is running in Offline Mode!",
                 color="warning",
                 id="overlay-alert",
-                is_open=False,
+                is_open=True,
                 duration=8000
             ),
             html.Hr(),
@@ -401,9 +401,8 @@ def update_theme(theme):
         Output("overlay-alert", "color"),
     ],
     [Input("offline-switch", "value")],
-    [State("overlay-alert", "is_open")],
 )
-def toggle_alert(offline_mode, is_open):
+def toggle_alert(offline_mode):
     if open_ai_is_valid and open_weather_is_valid:
         if len(offline_mode) == 1:
             msg = "The chatbot is running in Offline Mode!"
@@ -414,10 +413,7 @@ def toggle_alert(offline_mode, is_open):
     else:
         msg = "API keys are missing or invalid! Running in Offline Mode by default."
         color = "danger"
-
-    if len(offline_mode) == 1:
-        return not is_open, msg, color
-    return is_open, msg, color
+    return True, msg, color
 
 
 if __name__ == "__main__":
