@@ -196,7 +196,7 @@ app.layout = html.Div(
                             dbc.Spinner(
                                 dcc.Store(id="store-answers", data=[], storage_type="memory"),
                                 color="secondary",
-                                spinner_style={"position": "absolute", "bottom": "10px", "left": "5px"},
+                                id="msg-spinner",
                             ),
                             controls,
                             dbc.Spinner(html.Div(id="loading-component"))
