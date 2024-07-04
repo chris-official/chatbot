@@ -147,6 +147,13 @@ p {
     margin-right: 1rem;
 }
 
+.tooltip-inner {
+    font-family: inherit;
+    font-size: 1rem;
+    color: #383838;
+    background-color: #f5f5f5;
+}
+
 .btn-primary {
     --bs-btn-color: #383838;
     --bs-btn-bg: #f5f5f5;
