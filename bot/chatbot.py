@@ -5,6 +5,7 @@ from langchain.memory import ConversationBufferWindowMemory
 from dotenv import load_dotenv
 from api import OpenWeatherMapQuery
 from prompts import SYSTEM_PROMPT
+import os
 
 load_dotenv()
 
@@ -50,3 +51,10 @@ def query_llm(agent, question: str, return_history: bool = False) -> dict | str:
     if return_history:
         return ai_response
     return ai_response["output"]
+
+
+def check_open_ai_key() -> bool:
+    open_ai = os.getenv("OPENAI_API_KEY", "")
+    if len(open_ai) < 16:
+        return False
+    return True
