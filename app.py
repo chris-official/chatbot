@@ -51,7 +51,8 @@ def textbox(text: str, box: str = "ai") -> dbc.Card | html.Div:
         raise ValueError("Incorrect option for box.")
 
 
-def weather_card(title: str, temp: str = "--", cloud: str = "--", wind: str = "--", rain: str = "--", icon: str = "02d") -> dbc.Card:
+def weather_card(title: str, temp: str = "--", cloud: str = "--", wind: str = "--", rain: str = "--",
+                 icon: str = "02d") -> dbc.Card:
     icon = html.Img(src=f"https://openweathermap.org/img/wn/{icon}@2x.png", className="weather-icons")
     return dbc.Card(
         [
@@ -152,7 +153,8 @@ controls = dbc.InputGroup(
 
 buttons = html.Div(
     [
-        dbc.Button(text, color="primary", id=f"example-button_{i}", className="example-buttons") for i, text in enumerate(PROMPT_EXAMPLES)
+        dbc.Button(text, color="primary", id=f"example-button_{i}", className="example-buttons")
+        for i, text in enumerate(PROMPT_EXAMPLES)
     ],
     className="d-grid gap-2 button-wrapper",
 )
@@ -179,7 +181,8 @@ app.layout = html.Div(
                             html.Div(
                                 [
                                     html.Hr(),
-                                    html.P("Click on any example to prefill the chatbox. Next, you can edit your prompt or submit your question directly!"),
+                                    html.P("Click on any example to prefill the chatbox. Next, you can edit your \
+                                    prompt or submit your question directly!"),
                                     html.Hr(),
                                 ],
                                 className="button-hint"
@@ -234,7 +237,10 @@ app.layout = html.Div(
 
 
 @callback(
-    [Output("weather-cards-wrapper-id", "children"), Output("location-name", "children")],
+    [
+        Output("weather-cards-wrapper-id", "children"),
+        Output("location-name", "children")
+    ],
     [Input("store-answers", "data")],
     [State("submit", "n_clicks")]
 )
@@ -309,9 +315,18 @@ def update_display_answers(answers, questions):
 
 
 @callback(
-    [Output("store-questions", "data"), Output("user-input", "value")],
-    [Input("submit", "n_clicks"), Input("user-input", "n_submit")],
-    [State("user-input", "value"), State("store-questions", "data")],
+    [
+        Output("store-questions", "data"),
+        Output("user-input", "value")
+    ],
+    [
+        Input("submit", "n_clicks"),
+        Input("user-input", "n_submit")
+    ],
+    [
+        State("user-input", "value"),
+        State("store-questions", "data")
+    ],
 )
 def update_conversation(n_clicks, n_submit, user_input, question_history):
     if n_clicks == 0:
