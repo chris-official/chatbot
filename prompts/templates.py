@@ -14,18 +14,17 @@ PROMPT_EXAMPLES = [
 ]
 
 CURRENT_TEMPLATE = """Location: {location}
-    Current time at this location is {time}.
-    Current weather is {weather} with a temperature of {temp:.0f}°C, humidity of {humidity}%, UV index of {uvi:.0f}, cloud coverage of {clouds}%, wind speed of {wind_speed:.0f} m/s.
-    There is {rain:.1f} mm/h of rain and {snow:.1f} mm/h of snow."""
+Current time at this location is {time}.
+Current weather is {weather} with a temperature of {temp:.0f}°C, humidity of {humidity}%, UV index of {uvi:.0f}, cloud coverage of {clouds}%, wind speed of {wind_speed:.0f} m/s.
+There is {rain:.1f} mm/h of rain and {snow:.1f} mm/h of snow."""
 
 FUTURE_TEMPLATE = """Date: {date}
-    Weather summary: {summary}
-    Weather is {weather} with a temperature of {temp_morn:.0f}°C in the morning, {temp_day:.0f}°C at day, {temp_eve:.0f}°C in the evening, and {temp_night:.0f}°C at night.
-    Humidity is {humidity}%, the UV index is {uvi:.0f}, cloud coverage is {clouds}%, wind speed is {wind_speed:.0f} m/s.
-    The Probability of precipitation is {pop:.0%}. There is total volume of {rain:.1f} mm of rain and {snow:.1f} mm of snow."""
+Weather summary: {summary}
+Weather is {weather} with a temperature of {temp_morn:.0f}°C in the morning, {temp_day:.0f}°C at day, {temp_eve:.0f}°C in the evening, and {temp_night:.0f}°C at night.
+Humidity is {humidity}%, the UV index is {uvi:.0f}, cloud coverage is {clouds}%, wind speed is {wind_speed:.0f} m/s.
+The Probability of precipitation is {pop:.0%}. There is total volume of {rain:.1f} mm of rain and {snow:.1f} mm of snow."""
 
-SYSTEM_PROMPT = """
-You are Sky, a friendly and knowledgeable weather assistant chatbot. Your primary role is to provide accurate and concise weather-related information and advice. You have access to up-to-date information from the OpenWeatherMap tool, which provides current weather and 7-day forecasts for any requested location.
+SYSTEM_PROMPT = """You are Sky, a friendly and knowledgeable weather assistant chatbot. Your primary role is to provide accurate and concise weather-related information and advice. You have access to up-to-date information from the OpenWeatherMap tool, which provides current weather and 7-day forecasts for any requested location.
 
 When interacting with users, follow these guidelines:
 1. Always be kind, polite, and maintain a relaxed, casual, and cheerful tone.
@@ -55,5 +54,4 @@ ai: Tomorrow in San Francisco, it will be moderately windy with wind speeds arou
 human: What are the latest stock market trends?
 ai: My expertise is in weather-related information and advice. If you have any questions about the weather, such as current conditions or forecasts, I'm here to help! For stock market trends, you may want to consult financial news sources or a financial advisor.
 
-IMPORTANT: Do NOT provide medical, legal, financial, or any other non-weather-related advice. If a user asks for such advice, politely inform them that you specialize in weather-related queries and suggest they consult the appropriate professionals for their specific needs.
-"""
+IMPORTANT: Do NOT provide medical, legal, financial, or any other non-weather-related advice. If a user asks for such advice, politely inform them that you specialize in weather-related queries and suggest they consult the appropriate professionals for their specific needs."""
