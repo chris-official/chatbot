@@ -136,7 +136,7 @@ p {
     color: #494949;
 }
 
-#debug-switch {
+#offline-switch {
     display: inline-block;
     float: right;
 }
@@ -145,6 +145,16 @@ p {
     display: inline-block;
     float: right;
     margin-right: 1rem;
+}
+
+#msg-spinner {
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+}
+
+.mgs-text p {
+    margin-bottom: 0;
 }
 
 .tooltip-inner {
