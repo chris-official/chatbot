@@ -406,6 +406,10 @@ def toggle_alert(offline_mode, is_open):
 
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 10000))
-    host = str(os.getenv("HOST", "0.0.0.0"))
-    app.run_server(debug=False, port=port, host=host)
+    is_deployed = os.getenv("RENDER", False)
+    if is_deployed:
+        port = int(os.getenv("PORT", 10000))
+        host = str(os.getenv("HOST", "0.0.0.0"))
+        app.run_server(debug=False, port=port, host=host)
+    else:
+        app.run_server(debug=True)
