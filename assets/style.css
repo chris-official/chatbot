@@ -154,6 +154,20 @@ p {
     background-color: #f5f5f5;
 }
 
+#overlay-alert {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: fit-content;
+    color: #F8F9FA;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+
 .btn-primary {
     --bs-btn-color: #383838;
     --bs-btn-bg: #f5f5f5;
