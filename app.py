@@ -5,21 +5,28 @@ import dash_bootstrap_components as dbc
 from time import sleep
 from itertools import chain, zip_longest
 from datetime import datetime, timezone, timedelta
-from bot import setup_agent, query_llm
+from bot import setup_agent, query_llm, check_open_ai_key
 from prompts import PROMPT_EXAMPLES
+from api import check_open_weather_key
+
 
 # robot: https://cdn-icons-png.flaticon.com/512/3398/3398643.png
 
 # setup chatbot
 agent, tools = setup_agent(model="gpt-3.5-turbo", temperature=0.5, verbose=False)
 
+# check API keys
+open_ai_is_valid = check_open_ai_key()
+open_weather_is_valid = check_open_weather_key()
+starting_mode = "offline" if not open_ai_is_valid or not open_weather_is_valid else "online"
 
-def header(name: str) -> dbc.Row:
+
+def header(name: str, mode: str) -> dbc.Row:
     title = html.H1(name, style={"margin-top": 5})
     switch = dbc.Checklist(
-        options=[{"label": "Debug Mode", "value": 1}],
-        value=[],
-        id="debug-switch",
+        options=[{"label": "Offline Mode", "value": 1}],
+        value=[1] if mode == "offline" else [],
+        id="offline-switch",
         switch=True,
     )
     select = dbc.Checklist(
@@ -155,7 +162,14 @@ app.layout = html.Div(
         fluid=True,
         children=[
             html.Link(id='theme-css', rel='stylesheet', href='/assets/style.css'),
-            header("Weather Chatbot"),
+            header("Weather Chatbot", starting_mode),
+            dbc.Alert(
+                "The chatbot is running in Offline Mode!",
+                color="warning",
+                id="overlay-alert",
+                is_open=False,
+                duration=8000
+            ),
             html.Hr(),
             dbc.Row(
                 [
@@ -313,16 +327,32 @@ def update_conversation(n_clicks, n_submit, user_input, question_history):
     [
         State("user-input", "value"),
         State("store-answers", "data"),
-        State("debug-switch", "value"),
+        State("offline-switch", "value"),
     ],
 )
-def run_chatbot(n_clicks, n_submit, user_input, answer_history, debug_mode):
+def run_chatbot(n_clicks, n_submit, user_input, answer_history, offline_mode):
     if user_input is None or user_input == "":
         return answer_history
 
-    if len(debug_mode) == 1:
+    if len(offline_mode) == 1:
         sleep(1)
-        answer_history.append("The weather is nice today! Please provide valid API keys to get real weather data.")
+        answer_history.append("The weather is nice today!")
+        return answer_history
+    elif not open_ai_is_valid:
+        answer_history.append(
+            "It seems that your OpenAI API key is missing. Please provide valid API keys to chat with the bot or \
+            enable 'Offline Mode'."
+        )
+        return answer_history
+    elif not open_weather_is_valid:
+        warning = ("It seems that your OpenWeatherMap API key is missing or invalid. "
+                   "Please provide valid API keys to get real-time weather data.")
+        try:
+            response = query_llm(agent, user_input)
+        except Exception as e:
+            response = str(e)
+        res = f"{response}\n\n**Note:** {warning}"
+        answer_history.append(res)
         return answer_history
     else:
         response = query_llm(agent, user_input)
@@ -330,7 +360,7 @@ def run_chatbot(n_clicks, n_submit, user_input, answer_history, debug_mode):
         return answer_history
 
 
-@app.callback(
+@callback(
     Output('theme-css', 'href'),
     [Input('theme-switch', 'value')]
 )
@@ -338,6 +368,32 @@ def update_theme(theme):
     if "dark" in theme:
         return '/assets/dark_style.css'
     return '/assets/style.css'
+
+
+@callback(
+    [
+        Output("overlay-alert", "is_open"),
+        Output("overlay-alert", "children"),
+        Output("overlay-alert", "color"),
+    ],
+    [Input("offline-switch", "value")],
+    [State("overlay-alert", "is_open")],
+)
+def toggle_alert(offline_mode, is_open):
+    if open_ai_is_valid and open_weather_is_valid:
+        if len(offline_mode) == 1:
+            msg = "The chatbot is running in Offline Mode!"
+            color = "warning"
+        else:
+            msg = "The chatbot is running in Online Mode!"
+            color = "success"
+    else:
+        msg = "API keys are missing or invalid! Running in Offline Mode by default."
+        color = "danger"
+
+    if len(offline_mode) == 1:
+        return not is_open, msg, color
+    return is_open, msg, color
 
 
 if __name__ == "__main__":
