@@ -361,7 +361,10 @@ def run_chatbot(n_clicks, n_submit, user_input, answer_history, offline_mode):
         answer_history.append(res)
         return answer_history
     else:
-        response = query_llm(agent, user_input)
+        try:
+            response = query_llm(agent, user_input)
+        except Exception as e:
+            response = f"**Oops! Something went wrong:** \n\n{e}"
         answer_history.append(response)
         return answer_history
 
