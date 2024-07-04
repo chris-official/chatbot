@@ -206,6 +206,12 @@ app.layout = html.Div(
                     dbc.Col(
                         [
                             html.H2("7-Day Forecast"),
+                            dbc.Tooltip(
+                                "This column will update automatically once you submit a question.",
+                                target="weather-cards-wrapper-id",
+                                placement="left",
+                                delay={"show": 300, "hide": 100},
+                            ),
                             html.Hr(),
                             html.Div(
                                 [
