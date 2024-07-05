@@ -15,8 +15,8 @@ No manual installation is required, and you can start chatting immediately! <br>
 You can visit the online chatbot here: [iu-weather-chatbot.onrender.com](https://iu-weather-chatbot.onrender.com)
 
 > [!TIP]
-> When accessing the online chatbot after a longer period of inactivity, you may need to wait a few seconds for the
-> server to start up. Therefore, please be patient and wait for the website to load.
+> When accessing the online chatbot after a longer period of inactivity, you may need to wait for the
+> server to start up. This can take up to 2 minutes. Therefore, please be patient and wait for the website to load.
 > 
 > For the best experience, use the chatbot on a desktop or laptop. Even though the chatbot is mobile-friendly,
 > the UI is optimized for larger screens and some features are disabled to fit the smaller screen size of mobile
@@ -31,7 +31,8 @@ python -m venv chatbot_env
 chatbot_env/Scripts/activate.bat
 ```
 
-Copy the contents of the chatbot repository into the virtual environment directory and install the required dependencies:
+Copy the contents of the chatbot repository into the virtual environment directory (or use git clone) and install 
+the required dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -56,7 +57,7 @@ This will initiate a local server at [`http://127.0.0.1:8050`](http://127.0.0.1:
 To start chatting with the chatbot, simply open this URL in your browser.
 
 > [!WARNING]
-> When no API keys are provided, the chatbot will run in offline mode and will not make any API calls.
+> When no API keys are provided, the chatbot will automatically start in offline mode and will not make any API calls.
 > Instead, a default response will be displayed. For the chatbot to work properly, you must provide the API keys or
 > visit the online chatbot.
 
