@@ -9,6 +9,7 @@ interface is provided by a [Dash](https://dash.plotly.com/tutorial) web applicat
 chatbot intuitively without any manual installations. The chatbot has been deployed on [Render](https://render.com/)
 and can be accessed online by visiting [iu-weather-chatbot.onrender.com](https://iu-weather-chatbot.onrender.com).
 
+
 ## Web UI (recommended)
 
 No manual installation is required, and you can start chatting immediately! <br>
@@ -22,8 +23,17 @@ You can visit the online chatbot here: [iu-weather-chatbot.onrender.com](https:/
 > the UI is optimized for larger screens and some features are disabled to fit the smaller screen size of mobile
 > devices.
 
+
 ## Manual Installation
 
+Download the contents of the chatbot repository or clone it using the following command:
+
+```bash 
+git clone https://github.com/chris-official/chatbot.git
+cd chatbot
+```
+
+It is recommended to use `Python=3.12`. However, `Python>=3.10` may also work but has not been tested.
 Create a new virtual environment and activate it:
     
 ```bash
@@ -31,8 +41,14 @@ python -m venv chatbot_env
 chatbot_env/Scripts/activate.bat
 ```
 
-Copy the contents of the chatbot repository into the virtual environment directory (or use git clone) and install 
-the required dependencies:
+Alternatively, you can use `conda` to create a new environment:
+
+```bash
+conda create --name chatbot_env python=3.12.4
+conda activate chatbot_env
+```
+
+Install the required dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -61,6 +77,7 @@ To start chatting with the chatbot, simply open this URL in your browser.
 > Instead, a default response will be displayed. For the chatbot to work properly, you must provide the API keys or
 > visit the online chatbot.
 
+
 ## Features
 
 The chatbot provides following functionalities:
@@ -87,6 +104,7 @@ chatbot. This column is hidden on mobile devices.
 > [!NOTE]
 > The Prompt Examples and Weather Information columns are hidden on mobile devices to provide a better user experience.
 
+
 ## Example
 
 1. Select a prompt from the examples column or type a query in the chat interface. Your prompt should be a general
@@ -98,10 +116,18 @@ made a successful API call.
 3. Wait for the chatbot to generate a response.
 4. Keep the conversation going by asking more questions!
 
+
 ## Troubleshooting
 
 If you encounter any server related issues (Error code: 5XX), please check the server status on the
 [Render Status Page](https://status.render.com) for any ongoing incidents and try again later.
+
+
+## License
+
+This project was developed as part of the course "Project: AI Use Case" at the International University of 
+Applied Sciences (IU).
+
 
 ## References
 
