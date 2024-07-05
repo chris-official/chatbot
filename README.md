@@ -102,3 +102,21 @@ made a successful API call.
 
 If you encounter any server related issues (Error code: 5XX), please check the server status on the
 [Render Status Page](https://status.render.com) for any ongoing incidents and try again later.
+
+## References
+
+* [Dash Bootstrap Components](https://dash-bootstrap-components.opensource.faculty.ai/docs/)
+* [Dash Chatbot Example](https://github.com/plotly/dash-sample-apps/tree/main/apps/dash-gpt3-chatbot)
+* [Google Fonts](https://fonts.google.com/specimen/Poppins)
+* [Langchain Custom tools](https://python.langchain.com/v0.2/docs/how_to/custom_tools/)
+* [Langchain OpenWeatherMap Tool](https://python.langchain.com/v0.2/docs/integrations/tools/openweathermap/)
+* [Langchain OpenWeatherMap Wrapper](https://python.langchain.com/v0.2/docs/integrations/providers/openweathermap/)
+* [Langchain Tool Calling Agents](https://python.langchain.com/v0.1/docs/modules/agents/agent_types/tool_calling/)
+* [OpenWeatherMap API Docs](https://openweathermap.org/api/one-call-3)
+* [OpenWeatherMap Geocoding API](https://openweathermap.org/api/geocoding-api)
+* [OpenWeatherMap Weather Condition Icons](https://openweathermap.org/weather-conditions)
+* [PyOWM Docs](https://pyowm.readthedocs.io/en/latest/v3/code-recipes.html)
+* [PyOWM GitHub](https://github.com/csparpa/pyowm)
+* [Render Dashboard](https://dashboard.render.com)
+* [Render Web Service](https://docs.render.com/web-services)
+* [Robot Icon](https://cdn-icons-png.flaticon.com/512/3398/3398643.png)
