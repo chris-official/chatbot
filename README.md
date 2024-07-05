@@ -1,4 +1,10 @@
-# Weather Chatbot
+<br />
+<div align="center">
+  <img src="assets/iu-logo.png" alt="Logo" width="150">
+  <h1>Project: AI Use Case - Weather Chatbot</h1>
+</div>
+
+![Weather Chatbot](assets/screenshot.png)
 
 ## Description
 
