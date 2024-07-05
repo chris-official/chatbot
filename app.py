@@ -10,8 +10,6 @@ from prompts import PROMPT_EXAMPLES
 from api import check_open_weather_key
 
 
-# robot: https://cdn-icons-png.flaticon.com/512/3398/3398643.png
-
 # setup chatbot
 agent, tools = setup_agent(model="gpt-3.5-turbo", temperature=0.5, verbose=False)
 
