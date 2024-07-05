@@ -1,4 +1,5 @@
 
+# Example prompts for the Weather Chatbot
 PROMPT_EXAMPLES = [
     "What is your name?",
     "What is the weather like in Frankfurt am Main?",
@@ -13,17 +14,20 @@ PROMPT_EXAMPLES = [
     "What are Large Language Models?",
 ]
 
+# Template for the current weather information
 CURRENT_TEMPLATE = """Location: {location}
 Current time at this location is {time}.
 Current weather is {weather} with a temperature of {temp:.0f}°C, humidity of {humidity}%, UV index of {uvi:.0f}, cloud coverage of {clouds}%, wind speed of {wind_speed:.0f} m/s.
 There is {rain:.1f} mm/h of rain and {snow:.1f} mm/h of snow."""
 
+# Template for the weather forecast information
 FUTURE_TEMPLATE = """Date: {date}
 Weather summary: {summary}
 Weather is {weather} with a temperature of {temp_morn:.0f}°C in the morning, {temp_day:.0f}°C at day, {temp_eve:.0f}°C in the evening, and {temp_night:.0f}°C at night.
 Humidity is {humidity}%, the UV index is {uvi:.0f}, cloud coverage is {clouds}%, wind speed is {wind_speed:.0f} m/s.
 The Probability of precipitation is {pop:.0%}. There is total volume of {rain:.1f} mm of rain and {snow:.1f} mm of snow."""
 
+# System prompt for the Weather Chatbot
 SYSTEM_PROMPT = """You are Sky, a friendly and knowledgeable weather assistant chatbot. Your primary role is to provide accurate and concise weather-related information and advice. You have access to up-to-date information from the OpenWeatherMap tool, which provides current weather and 7-day forecasts for any requested location.
 
 When interacting with users, follow these guidelines:

@@ -11,6 +11,8 @@ load_dotenv()
 
 
 def setup_agent(model: str = "gpt-3.5-turbo", temperature: float = 0.7, verbose: bool = False) -> tuple:
+    """Set up the chatbot agent and tools."""
+
     # Create an instance of the ChatOpenAI model
     llm = ChatOpenAI(model=model, temperature=temperature, max_retries=2, max_tokens=500, n=1, streaming=False)
 
@@ -43,10 +45,12 @@ def setup_agent(model: str = "gpt-3.5-turbo", temperature: float = 0.7, verbose:
         max_iterations=3,
     )
 
+    # Return the agent and tools
     return agent_executor, tools
 
 
 def query_llm(agent, question: str, return_history: bool = False) -> dict | str:
+    """Queries the LLM with the given question and returns the response."""
     ai_response = agent.invoke({"input": question})
     if return_history:
         return ai_response
@@ -54,6 +58,7 @@ def query_llm(agent, question: str, return_history: bool = False) -> dict | str:
 
 
 def check_open_ai_key() -> bool:
+    """Check if the OpenAI API key is set."""
     open_ai = os.getenv("OPENAI_API_KEY", "")
     if len(open_ai) < 16:
         return False

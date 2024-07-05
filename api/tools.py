@@ -6,6 +6,8 @@ from typing import Optional, Type
 
 
 class OpenWeatherMapInput(BaseModel):
+    """Input schema for OpenWeatherMap tool."""
+
     city: str = Field(
         description="The city for which to fetch weather information as string e.g. 'London' or 'Berlin'."
     )
@@ -38,6 +40,7 @@ class OpenWeatherMapQuery(BaseTool):
     args_schema: Type[BaseModel] = OpenWeatherMapInput
     return_direct: bool = False
 
-    def _run(self, city: str, country: Optional[str] = None, state: Optional[str] = None, run_manager: Optional[CallbackManagerForToolRun] = None) -> str:
+    def _run(self, city: str, country: Optional[str] = None, state: Optional[str] = None,
+             run_manager: Optional[CallbackManagerForToolRun] = None) -> str:
         """Use the OpenWeatherMap tool."""
         return self.api_wrapper.get_weather(city, country, state)

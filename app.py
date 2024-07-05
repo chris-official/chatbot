@@ -22,38 +22,57 @@ starting_mode = "offline" if not open_ai_is_valid or not open_weather_is_valid e
 
 
 def header(name: str, mode: str) -> dbc.Row:
+    """Create the header of the website."""
+
+    # Set the title
     title = html.H1(name, style={"margin-top": 5})
+
+    # Offline mode switch
     switch = dbc.Checklist(
         options=[{"label": "Offline Mode", "value": 1}],
         value=[1] if mode == "offline" else [],
         id="offline-switch",
         switch=True,
     )
+
+    # Theme selector switch
     select = dbc.Checklist(
         options=[{"label": "Dark Mode", "value": "dark"}],
         value=["dark"],
         id="theme-switch",
         switch=True,
     )
+
+    # Return the header
     return dbc.Row([dbc.Col(title, md=8), dbc.Col([switch, select], md=4)])
 
 
 def textbox(text: str, box: str = "ai") -> dbc.Card | html.Div:
+    """Creates message boxes."""
+
+    # Create the user message box
     if box == "user":
         return dbc.Card(text, body=True, inverse=True, className="user-message message-box")
+    # Create the AI message box
     elif box == "ai":
         thumbnail = html.Img(src=app.get_asset_url("bot.png"), className="thumbnail")
         box = dbc.Card(
             dcc.Markdown(text, className="mgs-text"), body=True, inverse=False, className="ai-message message-box"
         )
         return html.Div([thumbnail, box])
+    # Raise an error if the box type is not recognized
     else:
         raise ValueError("Incorrect option for box.")
 
 
 def weather_card(title: str, temp: str = "--", cloud: str = "--", wind: str = "--", rain: str = "--",
                  icon: str = "02d") -> dbc.Card:
+    """Create a weather card for the forecast information column."""
+
+    # Get the weather icon
     icon = html.Img(src=f"https://openweathermap.org/img/wn/{icon}@2x.png", className="weather-icons")
+
+    # Fill and return the weather card
     return dbc.Card(
         [
             dbc.CardBody(
@@ -113,13 +132,22 @@ def weather_card(title: str, temp: str = "--", cloud: str = "--", wind: str = "-
 
 
 def _update_display(questions: list, answers: list) -> list:
+    """Update the display of the conversation."""
+
+    # Combine the questions and answers
     history = [x for x in chain(*zip_longest(questions, answers)) if x is not None]
+
+    # Create the initial message
     out = [textbox("Hi, my name is Sky! How can I help you?", box="ai")]
+
+    # Create the message boxes
     messages = [
         textbox(x, box="user") if i % 2 == 0 else textbox(x, box="ai")
         for i, x in enumerate(history)
     ]
     out.extend(messages)
+
+    # Return the updated display
     return out
 
 
@@ -132,7 +160,7 @@ app.title = "Weather Chatbot"
 server = app.server
 
 
-# Define Layout
+# Define the conversation display
 conversation = html.Div(
     html.Div(id="display-conversation"),
     style={
@@ -144,6 +172,7 @@ conversation = html.Div(
     },
 )
 
+# Define input controls
 controls = dbc.InputGroup(
     children=[
         dbc.Textarea(id="user-input", placeholder="Write to the chatbot...", autofocus=True),
@@ -151,6 +180,7 @@ controls = dbc.InputGroup(
     ]
 )
 
+# Define the example buttons
 buttons = html.Div(
     [
         dbc.Button(text, color="primary", id=f"example-button_{i}", className="example-buttons")
@@ -159,6 +189,7 @@ buttons = html.Div(
     className="d-grid gap-2 button-wrapper",
 )
 
+# Define the main app layout
 app.layout = html.Div(
     dbc.Container(
         fluid=True,
@@ -245,14 +276,19 @@ app.layout = html.Div(
     [State("submit", "n_clicks")]
 )
 def update_weather_cards(answer_history, n_clicks):
+    """Update the weather forecast cards."""
+
+    # Define dates for next 7 days
     now = datetime.now(timezone(timedelta(hours=2)))
     dates = ["Today", "Tomorrow"]
     dates.extend([(now + timedelta(days=i)).strftime("%A") for i in range(2, 7)])
 
+    # Get the location and weather data from api wrapper
     wrapper = tools[0].api_wrapper
     location_data = wrapper.location
     weather_data = wrapper.weather
 
+    # Check if location data is available
     if (location_data is not None) and (answer_history != []):
         location = location_data["name"]
         if location_data.get("state") is not None:
@@ -261,12 +297,18 @@ def update_weather_cards(answer_history, n_clicks):
     else:
         location = "No location set."
 
+    # Return empty cards if no data is available
     if (n_clicks is None) or (weather_data is None):
         cards = [weather_card(day) for day in dates]
         return cards, location
 
+    # Get the weather data
     daily = weather_data["daily"]
+
+    # Get the icons
     icons = wrapper.get_icon_ids()
+
+    # Fill the weather cards
     cards = [
         weather_card(
             day,
@@ -278,6 +320,8 @@ def update_weather_cards(answer_history, n_clicks):
         )
         for day, data, icon in zip(dates, daily, icons)
     ]
+
+    # Return the weather cards and location
     return cards, location
 
 
@@ -288,10 +332,17 @@ def update_weather_cards(answer_history, n_clicks):
     prevent_initial_call=True
 )
 def on_button_click(*inputs):
+    """Fill the chatbox with the example prompts."""
+
+    # Get the triggered button id
     triggered_id = ctx.triggered_id
     n = int(triggered_id.split("_")[-1])
+
+    # Get the index of the triggered button
     length = len(inputs) // 2
     idx = length + n
+
+    # Return the example prompt of the triggered button
     return inputs[idx]
 
 
@@ -301,6 +352,7 @@ def on_button_click(*inputs):
     [State("store-answers", "data")],
 )
 def update_display_questions(questions, answers):
+    """Update the display of the conversation when a new question is submitted."""
     return _update_display(questions, answers)
 
 
@@ -311,6 +363,7 @@ def update_display_questions(questions, answers):
     prevent_initial_call=True
 )
 def update_display_answers(answers, questions):
+    """Update the display of the conversation when a new answer is received."""
     return _update_display(questions, answers)
 
 
@@ -329,12 +382,17 @@ def update_display_answers(answers, questions):
     ],
 )
 def update_conversation(n_clicks, n_submit, user_input, question_history):
+    """Update the conversation history with new questions."""
+
+    # Return empty question history if no questions are submitted
     if n_clicks == 0:
         return [], ""
 
+    # Return the old question history if empty input is submitted
     if user_input is None or user_input == "":
         return question_history, ""
 
+    # Append the new question to the question history
     question_history.append(user_input)
     return question_history, ""
 
@@ -352,32 +410,43 @@ def update_conversation(n_clicks, n_submit, user_input, question_history):
     ],
 )
 def run_chatbot(n_clicks, n_submit, user_input, answer_history, offline_mode):
+    """Runs the chatbot in online or offline mode and returns the answer history."""
+
+    # Return old answer history if no questions are submitted
     if user_input is None or user_input == "":
         return answer_history
 
+    # Return default message if chatbot is running in offline mode
     if len(offline_mode) == 1:
         sleep(1)
         answer_history.append("The weather is nice today!")
         return answer_history
+    # Return warning message if OpenAI API key is missing
     elif not open_ai_is_valid:
         answer_history.append(
             "It seems that your OpenAI API key is missing. Please provide valid API keys to chat with the bot or \
             enable 'Offline Mode'."
         )
         return answer_history
+    # Return warning message if OpenWeatherMap API key is missing
     elif not open_weather_is_valid:
         warning = ("It seems that your OpenWeatherMap API key is missing or invalid. "
                    "Please provide valid API keys to get real-time weather data.")
+        # Try to query the chatbot without real-time weather data
         try:
             response = query_llm(agent, user_input)
         except Exception as e:
             response = str(e)
+        # Append the response and warning message to the answer history
         res = f"{response}\n\n**Note:** {warning}"
         answer_history.append(res)
         return answer_history
+    # Run the chatbot in online mode
     else:
+        # Try to query the chatbot
         try:
             response = query_llm(agent, user_input)
+        # Return error message if an exception occurs
         except Exception as e:
             response = f"**Oops! Something went wrong:** \n\n{e}"
         answer_history.append(response)
@@ -389,6 +458,7 @@ def run_chatbot(n_clicks, n_submit, user_input, answer_history, offline_mode):
     [Input('theme-switch', 'value')]
 )
 def update_theme(theme):
+    """Update the theme of the website."""
     if "dark" in theme:
         return '/assets/dark_style.css'
     return '/assets/style.css'
@@ -403,13 +473,17 @@ def update_theme(theme):
     [Input("offline-switch", "value")],
 )
 def toggle_alert(offline_mode):
+    """Toggle the alert message based on the offline switch."""
     if open_ai_is_valid and open_weather_is_valid:
+        # Return warning message if chatbot is running in offline mode
         if len(offline_mode) == 1:
             msg = "The chatbot is running in Offline Mode!"
             color = "warning"
+        # Return success message if chatbot is running in online mode
         else:
             msg = "The chatbot is running in Online Mode!"
             color = "success"
+    # Return warning message if API keys are missing
     else:
         msg = "API keys are missing or invalid! Running in Offline Mode by default."
         color = "danger"
@@ -417,10 +491,13 @@ def toggle_alert(offline_mode):
 
 
 if __name__ == "__main__":
+    # Check if the app is deployed on render
     is_deployed = os.getenv("RENDER", False)
+    # Run the server in live mode if deployed
     if is_deployed:
         port = int(os.getenv("PORT", 10000))
         host = str(os.getenv("HOST", "0.0.0.0"))
         app.run_server(debug=False, port=port, host=host)
+    # Run the server in debug mode if deployed locally
     else:
         app.run_server(debug=True)
