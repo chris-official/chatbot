@@ -53,14 +53,14 @@ def textbox(text: str, box: str = "ai") -> dbc.Card | html.Div:
         return dbc.Card(text, body=True, inverse=True, className="user-message message-box")
     # Create the AI message box
     elif box == "ai":
-        thumbnail = html.Img(src=app.get_asset_url("bot.png"), className="thumbnail")
-        box = dbc.Card(
+        bot_img = html.Img(src=app.get_asset_url("bot.png"), className="thumbnail")
+        card = dbc.Card(
             dcc.Markdown(text, className="mgs-text"), body=True, inverse=False, className="ai-message message-box"
         )
-        return html.Div([thumbnail, box])
+        return html.Div([bot_img, card])
     # Raise an error if the box type is not recognized
     else:
-        raise ValueError("Incorrect option for box.")
+        raise ValueError(f"Received unknown message box type: {box} but expected 'user' or 'ai'.")
 
 
 def weather_card(title: str, temp: str = "--", cloud: str = "--", wind: str = "--", rain: str = "--",
@@ -136,17 +136,17 @@ def _update_display(questions: list, answers: list) -> list:
     history = [x for x in chain(*zip_longest(questions, answers)) if x is not None]
 
     # Create the initial message
-    out = [textbox("Hi, my name is Sky! How can I help you?", box="ai")]
+    initial_msg = [textbox("Hi, my name is Sky! How can I help you?", box="ai")]
 
     # Create the message boxes
     messages = [
         textbox(x, box="user") if i % 2 == 0 else textbox(x, box="ai")
         for i, x in enumerate(history)
     ]
-    out.extend(messages)
+    initial_msg.extend(messages)
 
     # Return the updated display
-    return out
+    return initial_msg
 
 
 font = ("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;"
@@ -172,7 +172,7 @@ conversation = html.Div(
 
 # Define input controls
 controls = dbc.InputGroup(
-    children=[
+    [
         dbc.Textarea(id="user-input", placeholder="Write to the chatbot...", autofocus=True),
         dbc.Button(html.I(className="fas fa-paper-plane fa-lg"), id="submit"),
     ]
