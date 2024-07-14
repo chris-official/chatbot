@@ -10,4 +10,4 @@ langchain-openai==0.1.11
 python-dotenv==1.0.1
 
 # Web server
-gunicorn==22.0.0
+gunicorn==22.0.0  # Not required for local deployment
