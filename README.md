@@ -8,7 +8,7 @@
 
 ## Description
 
-This is a weather chatbot that uses the [Langchain](https://python.langchain.com/v0.2/docs/introduction/) library, the
+This is a weather chatbot that uses the [LangChain](https://python.langchain.com/v0.2/docs/introduction/) library, the
 [OpenAI](https://platform.openai.com/docs/api-reference/introduction) API and the
 [OpenWeatherMap](https://openweathermap.org/api) API to generate responses to weather-related user queries. A user
 interface is provided by a [Dash](https://dash.plotly.com/tutorial) web application that allows users to chat with the
@@ -108,7 +108,8 @@ chatbot. This column is hidden on mobile devices.
 4. **Theme Switch**: The theme switch button in the top right corner allows users to switch between light and dark mode.
 
 > [!NOTE]
-> The Prompt Examples and Weather Information columns are hidden on mobile devices to provide a better user experience.
+> The Prompt Examples and Weather Information columns are hidden on mobile devices to provide a better user experience
+> on smaller screens.
 
 
 ## Example
@@ -140,10 +141,10 @@ Applied Sciences (IU).
 * [Dash Bootstrap Components](https://dash-bootstrap-components.opensource.faculty.ai/docs/)
 * [Dash Chatbot Example](https://github.com/plotly/dash-sample-apps/tree/main/apps/dash-gpt3-chatbot)
 * [Google Fonts](https://fonts.google.com/specimen/Poppins)
-* [Langchain Custom tools](https://python.langchain.com/v0.2/docs/how_to/custom_tools/)
-* [Langchain OpenWeatherMap Tool](https://python.langchain.com/v0.2/docs/integrations/tools/openweathermap/)
-* [Langchain OpenWeatherMap Wrapper](https://python.langchain.com/v0.2/docs/integrations/providers/openweathermap/)
-* [Langchain Tool Calling Agents](https://python.langchain.com/v0.1/docs/modules/agents/agent_types/tool_calling/)
+* [LangChain Custom Tools](https://python.langchain.com/v0.2/docs/how_to/custom_tools/)
+* [LangChain OpenWeatherMap Tool](https://python.langchain.com/v0.2/docs/integrations/tools/openweathermap/)
+* [LangChain OpenWeatherMap Wrapper](https://python.langchain.com/v0.2/docs/integrations/providers/openweathermap/)
+* [LangChain Tool Calling Agents](https://python.langchain.com/v0.1/docs/modules/agents/agent_types/tool_calling/)
 * [OpenWeatherMap API Docs](https://openweathermap.org/api/one-call-3)
 * [OpenWeatherMap Geocoding API](https://openweathermap.org/api/geocoding-api)
 * [OpenWeatherMap Weather Condition Icons](https://openweathermap.org/weather-conditions)
