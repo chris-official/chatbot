@@ -133,7 +133,7 @@ If you encounter any server related issues (Error code: 5XX), please check the s
 ## License
 
 This project was developed as part of the course "Project: AI Use Case" at the International University of 
-Applied Sciences (IU).
+Applied Sciences (IU) and is not intended for use other than educational purposes.
 
 
 ## References
