@@ -21,10 +21,11 @@ and can be accessed online by visiting [iu-weather-chatbot.onrender.com](https:/
 No manual installation is required, and you can start chatting immediately! <br>
 You can visit the online chatbot here: [iu-weather-chatbot.onrender.com](https://iu-weather-chatbot.onrender.com)
 
-> [!TIP]
+> [!WARNING]
 > When accessing the online chatbot after a longer period of inactivity, you may need to wait for the
-> server to start up. This can take up to 2 minutes. Therefore, please be patient and wait for the website to load.
-> 
+> server to start up. This can take up to 3 minutes. Therefore, please be patient and wait for the website to load.
+
+> [!TIP]
 > For the best experience, use the chatbot on a desktop or laptop. Even though the chatbot is mobile-friendly,
 > the UI is optimized for larger screens and some features are disabled to fit the smaller screen size of mobile
 > devices.
