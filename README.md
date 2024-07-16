@@ -45,7 +45,7 @@ Create a new virtual environment and activate it:
     
 ```bash
 python -m venv chatbot_env
-chatbot_env/Scripts/activate.bat
+chatbot_env/Scripts/activate.bat  # Linux: source chatbot_env/bin/activate
 ```
 
 Alternatively, you can use `conda` to create a new environment:
