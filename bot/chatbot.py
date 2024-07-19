@@ -10,7 +10,7 @@ import os
 load_dotenv()
 
 
-def setup_agent(model: str = "gpt-3.5-turbo", temperature: float = 0.7, verbose: bool = False) -> tuple:
+def setup_agent(model: str = "gpt-4o-mini", temperature: float = 0.7, verbose: bool = False) -> tuple:
     """Set up the chatbot agent and tools."""
 
     # Create an instance of the ChatOpenAI model
